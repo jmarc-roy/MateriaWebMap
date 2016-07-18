@@ -2,6 +2,12 @@
     margin: 0;
     padding: 0;
 }
-#title{
-    background: #303030;
+.ng-scope {
+  height: 100%;
 }
+  #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
