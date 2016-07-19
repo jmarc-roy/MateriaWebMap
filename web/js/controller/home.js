@@ -75,13 +75,17 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       var dataSets = []
       console.log("View :", view)
       for (i in $scope.categories) {
+
         var category = $scope.categories[i]
-        var categoryDataset = $filter('pinsByCategories')($scope.pins, category.id)
-        dataSets.push(categoryDataset)
-        console.log("Result of categoryDataset :", categoryDataset)
-        esriMapPoint.addPointCollection(map, categoryDataset, category.name).then(function(layer) {
-          console.log("newLayer created :", layer)
-        })
+        if(category){
+          var categoryDataset = $filter('pinsByCategories')($scope.pins, category.id)
+          dataSets.push(categoryDataset)
+          console.log("Result of categoryDataset :", categoryDataset)
+          esriMapPoint.addPointCollection(map, categoryDataset, category.name).then(function(layer) {
+            console.log("newLayer created :", layer)
+          })
+        }
+
       }
       $scope.changeLayerVisibility = function(layer) {
         console.log("LayerVisibility Change :", layer.visible)
