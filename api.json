@@ -25,14 +25,6 @@
 	},
 	{
 		"method": "post",
-		"url": "/POST/pin",
-		"query": {
-			"entity": "pins",
-			"id": "create"
-		}
-	},
-	{
-		"method": "post",
 		"url": "/POST/categorie",
 		"query": {
 			"entity": "category",
@@ -69,6 +61,14 @@
 		"query": {
 			"entity": "category",
 			"id": "delete"
+		}
+	},
+	{
+		"method": "post",
+		"url": "/POST/pin",
+		"query": {
+			"entity": "pins",
+			"id": "create"
 		}
 	}
 ]
