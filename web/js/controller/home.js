@@ -9,7 +9,10 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
     for (y in $scope.categories) {
       $scope.categories[y].visible = true
       if ($scope.categories[y].id == $scope.pins[i].id_category) {
-        $scope.pins[i].style = $scope.categories[y].style
+        if($scope.categories[y].style){
+          $scope.pins[i].style = $scope.categories[y].style
+        }
+
       }
     }
   }
@@ -141,9 +144,12 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       };
       $scope.layer = layer
       console.log("Layer to edit :", layer)
-      if (JSON.parse(layer.style)) {
-        $scope.layer.style = JSON.parse(layer.style)
+      if(layer.style){
+        if (JSON.parse(layer.style)) {
+          $scope.layer.style = JSON.parse(layer.style)
+        }
       }
+
 
       $scope.options = {
         format: 'hex'
@@ -343,7 +349,6 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
         })
         .join(' ');
     };
-
     function sanitizePosition() {
       var current = $scope.toastPosition;
       if (current.bottom && last.top) current.top = false;
