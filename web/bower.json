@@ -1,0 +1,13 @@
+{
+  "name": "MateriaWebMap",
+  "version": "0.1.0",
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-material": "^1.0.9",
+    "angular-ui-router": "^0.3.1",
+    "jquery": "^3.1.0",
+    "angular-esri-map": "^2.0.0",
+    "material-design-icons": "^2.2.3",
+    "angular-color-picker": "angularjs-color-picker#^2.1.3"
+  }
+}

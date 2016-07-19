@@ -1,0 +1,87 @@
+<div layout="row">
+  <div id="viewDiv" flex="80">
+    <div id="mapCenter" layout-padding style="background-color: #212121; color: white;">
+    longitude: {{center.longitude | number:2}}, latitude: {{center.latitude | number:2}}
+    </div>
+    <div id="selectMenu" style="background-color: #212121; color: white; font-weight: bold;" layout="column">
+      <md-menu layout="column">
+        <md-button aria-label="Open phone interactions menu" ng-click="openMenu($mdOpenMenu, $event)">
+          <img ng-src="{{map.basemapTemplateUrl}}" alt="" style="width: 100px; height: 100px;">
+        </md-button>
+        <md-menu-content>
+          <md-menu-item ng-repeat="basemap in basemaps" layout-padding>
+            <md-button ng-click="changeBasemap(basemap)">
+              <img ng-src="{{basemap.templateUrl}}" alt="" style="width: 100px; height: 50px;"> {{basemap.alias}}
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+  </div>
+  <div flex layout="column" style="min-width: 200px;">
+    <md-card flex layout="column" style="margin: 0; padding: 0;">
+      <md-toolbar class="md-toolbar-tools md-hue-1">
+        <p>
+          <md-icon>layers</md-icon> Layer list</p>
+        <md-button class="md-icon-button" ng-click="addCategory($event)">
+          <md-tooltip>create a new layer</md-tooltip>
+          <md-icon>
+            add_box
+          </md-icon>
+        </md-button>
+      </md-toolbar>
+      <div layout-padding layout="column">
+        <md-content flex>
+          <div ng-repeat="category in categories" style="border: solid; border-color: #ece5e5; border-width: 1px;" layout-margin layout-padding>
+            <md-checkbox ng-model="category.visible" ng-click="changeLayerVisibility(category)">
+              <h4 style="color: darkblue;">
+                {{category.name}}
+              </h4>
+            </md-checkbox>
+            <md-button class="md-icon-button" ng-show="category.expand" flex>
+              <md-icon ng-click="category.expand=!category.expand">expand_less</md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-show="!category.expand" flex>
+              <md-icon ng-click="category.expand=!category.expand">expand_more</md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="editCategory($event, category)">
+              <md-tooltip>Add a new location</md-tooltip>
+              <md-icon>
+                add
+              </md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="edit($event, category)" aria-label="symbolPopup">
+              <md-tooltip>Edit</md-tooltip>
+              <md-icon>edit</md-icon>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="confirmDeleteCategory($event, category)">
+              <md-tooltip>Delete</md-tooltip>
+              <md-icon>cancel</md-icon>
+            </md-button>
+            <p>
+            </p>
+            <div layout-padding ng-show="category.expand">
+              <md-divider></md-divider>
+              <p ng-show="!pinfiltered.length">This layer is empty, please add some points location</p>
+              <div>
+                <div ng-repeat="pin in pinfiltered = (pins | filter:{id_category: category.id})" style="padding-left: 20px;">
+                  - {{pin.name}}
+                  <md-button class="md-icon-button" ng-click="editPin($event, pin)" aria-label="symbolPopup">
+                    <md-tooltip>Edit</md-tooltip>
+                    <md-icon style="font-size: 20px;">edit</md-icon>
+                  </md-button>
+                  <md-button ng-click="confirmDeletePin($event, pin)" class="md-icon-button" aria-label="delete" style="color: red; font-size: 20px;">
+                    <md-tooltip>Delete</md-tooltip>
+                    <md-icon style="color: red;">cancel</md-icon>
+                  </md-button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </md-content>
+      </div>
+      </p>
+  </div>
+  </md-card>
+</div>

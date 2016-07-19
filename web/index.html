@@ -1,57 +1,45 @@
-</html>
 <!DOCTYPE html>
 <html layout="column">
-
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
 
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
-
+  <link rel="stylesheet" href="./bower_components/angular-material/angular-material.min.css">
   <link rel="stylesheet" href="https://js.arcgis.com/4.0/esri/css/main.css">
-  <link href="./css/style.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="./css/style.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="./bower_components/angular-color-picker/dist/angularjs-color-picker.min.css" />
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.10.3/angular-moment.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js">
-    < script src = "https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.4.6/angular-locale_fr-fr.js" >
-  </script>
+  <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="./bower_components/angular/angular.js"></script>
+  <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+  <script src="./bower_components/angular-aria/angular-aria.min.js"></script>
+  <script src="./bower_components/angular-messages/angular-messages.min.js"></script>
+  <script src="./bower_components/angular-material/angular-material.min.js"></script>
+  <script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="./bower_components/angular-esri-map/dist/angular-esri-map.js"></script>
+
+
+<script src="./bower_components/tinycolor/dist/tinycolor-min.js"></script>
+<script src="./bower_components/angular-color-picker/dist/angularjs-color-picker.min.js"></script>
+
+
   <script src="https://js.arcgis.com/4.0/"></script>
-  <script src="./controller.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/filter/pinsByCategories.js"></script>
+  <script src="./js/service/esriMapPoint.js"></script>
+  <script src="./js/service/esriMapWidget.js"></script>
+  <script src="./js/controller/home.js"></script>
+  <base href="/">
 </head>
 
 <body layout="column" flex ng-app="myApp">
   <md-card flex layout="column">
-    <md-toolbar style="color: white; text-align:center;" class="md-toolbar-tools">
+    <md-toolbar class="md-toolbar-tools">
       Materia Web Map example</md-toolbar>
-    <div id="viewDiv" flex></div>
+      <div ui-view="" flex layout="column">
   </md-card>
 </body>
 
-<script>
-  require([
-    "esri/Map",
-    "esri/views/SceneView",
-    "dojo/domReady!"
-  ], function(Map, SceneView) {
-
-    var map = new Map({
-      basemap: "streets",
-      ground: "world-elevation"
-    });
-
-    var view = new SceneView({
-      container: "viewDiv",
-      map: map,
-      scale: 50000000,
-      center: [-101.17, 21.78]
-    });
-
-  });
-</script>
 
 </html>

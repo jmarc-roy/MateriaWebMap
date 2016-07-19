@@ -208,5 +208,453 @@
 				"default": false
 			}
 		}
+	},
+	{
+		"undo": {
+			"type": "delete_field",
+			"table": "pins",
+			"value": "category"
+		},
+		"redo": {
+			"type": "create_field",
+			"table": "pins",
+			"value": {
+				"name": "category",
+				"type": "text",
+				"primary": false,
+				"unique": false,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			},
+			"position": 4
+		}
+	},
+	{
+		"undo": {
+			"type": "change_field",
+			"table": "pins",
+			"name": "longitude",
+			"value": {
+				"name": "longitude",
+				"type": "number",
+				"primary": false,
+				"unique": false,
+				"required": false,
+				"read": true,
+				"write": true,
+				"default": false
+			}
+		},
+		"redo": {
+			"type": "change_field",
+			"table": "pins",
+			"name": "longitude",
+			"value": {
+				"name": "longitude",
+				"type": "text",
+				"primary": false,
+				"unique": false,
+				"required": false,
+				"read": true,
+				"write": true,
+				"default": false
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "change_field",
+			"table": "pins",
+			"name": "latitude",
+			"value": {
+				"name": "latitude",
+				"type": "float",
+				"primary": false,
+				"unique": false,
+				"required": false,
+				"read": true,
+				"write": true,
+				"default": false
+			}
+		},
+		"redo": {
+			"type": "change_field",
+			"table": "pins",
+			"name": "latitude",
+			"value": {
+				"name": "latitude",
+				"type": "text",
+				"primary": false,
+				"unique": false,
+				"required": false,
+				"read": true,
+				"write": true,
+				"default": false
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_entity",
+			"table": "applications"
+		},
+		"redo": {
+			"type": "create_entity",
+			"table": "applications",
+			"value": {
+				"id": "85fc9b87-dd9b-482e-a67b-75e1b14916f9",
+				"fields": [
+					{
+						"name": "id",
+						"type": "number",
+						"primary": true,
+						"unique": true,
+						"required": true,
+						"read": true,
+						"write": true,
+						"default": false,
+						"autoIncrement": true
+					}
+				]
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_entity",
+			"table": "category"
+		},
+		"redo": {
+			"type": "create_entity",
+			"table": "category",
+			"value": {
+				"id": "f5f8c857-3f89-4daa-895f-b34d29eca267",
+				"fields": [
+					{
+						"name": "id",
+						"type": "number",
+						"primary": true,
+						"unique": true,
+						"required": true,
+						"read": true,
+						"write": true,
+						"default": false,
+						"autoIncrement": true
+					}
+				]
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_field",
+			"table": "category",
+			"value": "name"
+		},
+		"redo": {
+			"type": "create_field",
+			"table": "category",
+			"value": {
+				"name": "name",
+				"type": "text",
+				"primary": false,
+				"unique": true,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			},
+			"position": 1
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_field",
+			"table": "category",
+			"value": "style"
+		},
+		"redo": {
+			"type": "create_field",
+			"table": "category",
+			"value": {
+				"name": "style",
+				"type": "text",
+				"primary": false,
+				"unique": false,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			},
+			"position": 2
+		}
+	},
+	{
+		"undo": {
+			"type": "create_entity",
+			"table": "applications",
+			"value": {
+				"id": "85fc9b87-dd9b-482e-a67b-75e1b14916f9",
+				"fields": [
+					{
+						"name": "id",
+						"type": "number",
+						"primary": true,
+						"unique": true,
+						"required": true,
+						"read": true,
+						"write": true,
+						"default": false,
+						"autoIncrement": true
+					}
+				]
+			}
+		},
+		"redo": {
+			"type": "delete_entity",
+			"table": "applications"
+		}
+	},
+	{
+		"undo": {
+			"type": "change_field",
+			"table": "pins",
+			"name": "id_category",
+			"value": {
+				"name": "category",
+				"type": "text",
+				"primary": false,
+				"unique": false,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			}
+		},
+		"redo": {
+			"type": "change_field",
+			"table": "pins",
+			"name": "category",
+			"value": {
+				"name": "id_category",
+				"type": "text",
+				"primary": false,
+				"unique": false,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_relation",
+			"table": "pins",
+			"value": {
+				"field": "id_category",
+				"type": "belongsTo",
+				"reference": {
+					"entity": "category",
+					"field": "id"
+				},
+				"entity": "pins"
+			}
+		},
+		"redo": {
+			"type": "add_relation",
+			"table": "pins",
+			"value": {
+				"field": "id_category",
+				"type": "belongsTo",
+				"reference": {
+					"entity": "category",
+					"field": "id"
+				},
+				"entity": "pins"
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_relation",
+			"table": "category",
+			"value": {
+				"type": "hasMany",
+				"reference": {
+					"entity": "pins",
+					"field": "id_category"
+				}
+			}
+		},
+		"redo": {
+			"type": "add_relation",
+			"table": "category",
+			"value": {
+				"type": "hasMany",
+				"reference": {
+					"entity": "pins",
+					"field": "id_category"
+				}
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "change_field",
+			"table": "pins",
+			"name": "id_category",
+			"value": {
+				"name": "id_category",
+				"type": "text",
+				"primary": false,
+				"unique": false,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			}
+		},
+		"redo": {
+			"type": "change_field",
+			"table": "pins",
+			"name": "id_category",
+			"value": {
+				"name": "id_category",
+				"type": "number",
+				"primary": false,
+				"unique": false,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_entity",
+			"table": "basemap"
+		},
+		"redo": {
+			"type": "create_entity",
+			"table": "basemap",
+			"value": {
+				"id": "98cb62c2-6543-486a-8df5-17432c2c914d",
+				"fields": [
+					{
+						"name": "id",
+						"type": "number",
+						"primary": true,
+						"unique": true,
+						"required": true,
+						"read": true,
+						"write": true,
+						"default": false,
+						"autoIncrement": true
+					}
+				]
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_field",
+			"table": "basemap",
+			"value": "name"
+		},
+		"redo": {
+			"type": "create_field",
+			"table": "basemap",
+			"value": {
+				"name": "name",
+				"type": "text",
+				"primary": false,
+				"unique": false,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			},
+			"position": 1
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_field",
+			"table": "basemap",
+			"value": "templateUrl"
+		},
+		"redo": {
+			"type": "create_field",
+			"table": "basemap",
+			"value": {
+				"name": "templateUrl",
+				"type": "text",
+				"primary": false,
+				"unique": false,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			},
+			"position": 2
+		}
+	},
+	{
+		"undo": {
+			"type": "change_field",
+			"table": "basemap",
+			"name": "alias",
+			"value": {
+				"name": "name",
+				"type": "text",
+				"primary": false,
+				"unique": false,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			}
+		},
+		"redo": {
+			"type": "change_field",
+			"table": "basemap",
+			"name": "name",
+			"value": {
+				"name": "alias",
+				"type": "text",
+				"primary": false,
+				"unique": false,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_field",
+			"table": "basemap",
+			"value": "name"
+		},
+		"redo": {
+			"type": "create_field",
+			"table": "basemap",
+			"value": {
+				"name": "name",
+				"type": "text",
+				"primary": false,
+				"unique": false,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			},
+			"position": 3
+		}
 	}
 ]

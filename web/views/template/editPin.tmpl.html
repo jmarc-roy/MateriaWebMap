@@ -1,0 +1,30 @@
+<md-dialog aria-label="Importer Fichier" ng-cloak>
+  <form layout="column">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Editer {{pin.name}}</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content layout="column" flex>
+      <div layout-padding layout-align="row" layout-wrapp>
+        <md-input-container>
+          <label for="">Name</label>
+          <input ng-model="pin.name">
+        </md-input-container>
+        <md-input-container>
+          <label for="">Longitude</label>
+          <input ng-model="pin.longitude">
+        </md-input-container>
+        <md-input-container>
+          <label for="">Latitude</label>
+          <input ng-model="pin.latitude">
+        </md-input-container>
+        <div>
+          <md-button ng-click="saveEdits4(pin, layer)">
+            <md-icon icon="save">save</md-icon>
+          </md-button>
+        </div>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

@@ -1,0 +1,88 @@
+<md-dialog aria-label="Importer Fichier" ng-cloak>
+  <form layout="column">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Add layer</h2>
+      </div>
+    </md-toolbar>
+    <div>
+
+    </div>
+    <md-dialog-content layout="column" flex>
+      <div layout-padding layout-align="row" layout-wrapp>
+        <md-input-container>
+          <label for="">Name</label>
+          <input ng-model="layer.name">
+        </md-input-container>
+        <md-input-container>
+          <label for="">Renderer type</label>
+
+          <md-select ng-model="layer.style.rendererType" required>
+            <md-option>
+              Simple symbol
+            </md-option>
+            <md-option>
+              3D symbol
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <div ng-show="layer.style.rendererType=='3D symbol'">
+          <md-input-container>
+            <label for="">3D shape</label>
+            <md-select ng-model="layer.style.shape3D" required>
+              <md-option>
+                sphere
+              </md-option>
+              <md-option>
+                cylinder
+              </md-option>
+              <md-option>
+                cube
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container>
+            <label for="">Height</label>
+            <input ng-model="layer.style.height">
+          </md-input-container>
+          <md-input-container>
+            <label for="">Width</label>
+            <input ng-model="layer.style.width">
+          </md-input-container>
+        </div>
+        <div ng-hide="layer.style.rendererType=='3D symbol'">
+          <md-input-container >
+            <label for="">Shape</label>
+            <md-select ng-model="layer.style.shape" required>
+              <md-option>
+                circle
+              </md-option>
+              <md-option>
+                square
+              </md-option>
+              <md-option>
+                diamond
+              </md-option>
+            </md-select>
+          </md-input-container>
+
+
+        </div>
+        <md-input-container>
+          <label for="">Size</label>
+          <input ng-model="layer.style.size">
+        </md-input-container>
+        <md-input-container>
+          <label for="">Color</label>
+          <color-picker ng-model="layer.style.color" options="options"></color-picker>
+        </md-input-container>
+
+        <div>
+          <md-button ng-click="saveEdits3(layer)">
+            <md-icon icon="save">save</md-icon>
+          </md-button>
+        </div>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

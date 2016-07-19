@@ -1,1 +1,74 @@
-[]
+[
+	{
+		"method": "get",
+		"url": "/pins",
+		"query": {
+			"entity": "pins",
+			"id": "list"
+		}
+	},
+	{
+		"method": "get",
+		"url": "/categories",
+		"query": {
+			"entity": "category",
+			"id": "list"
+		}
+	},
+	{
+		"method": "put",
+		"url": "/PUT/category/:id",
+		"query": {
+			"entity": "category",
+			"id": "update"
+		}
+	},
+	{
+		"method": "post",
+		"url": "/POST/pin",
+		"query": {
+			"entity": "pins",
+			"id": "create"
+		}
+	},
+	{
+		"method": "post",
+		"url": "/POST/categorie",
+		"query": {
+			"entity": "category",
+			"id": "create"
+		}
+	},
+	{
+		"method": "put",
+		"url": "/PUT/pin/:id",
+		"query": {
+			"entity": "pins",
+			"id": "update"
+		}
+	},
+	{
+		"method": "get",
+		"url": "/basemaps",
+		"query": {
+			"entity": "basemap",
+			"id": "list"
+		}
+	},
+	{
+		"method": "delete",
+		"url": "/pins/:id",
+		"query": {
+			"entity": "pins",
+			"id": "delete"
+		}
+	},
+	{
+		"method": "delete",
+		"url": "/category/:id",
+		"query": {
+			"entity": "category",
+			"id": "delete"
+		}
+	}
+]

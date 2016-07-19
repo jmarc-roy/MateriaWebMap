@@ -1,5 +1,5 @@
 {
-	"id": "f52a3f9f-53dd-4a40-9a43-9594f496eec2",
+	"id": "98cb62c2-6543-486a-8df5-17432c2c914d",
 	"fields": [
 		{
 			"name": "id",
@@ -13,21 +13,21 @@
 			"autoIncrement": true
 		},
 		{
-			"name": "latitude",
+			"name": "alias",
 			"type": "text",
 			"primary": false,
 			"unique": false,
-			"required": false,
+			"required": true,
 			"read": true,
 			"write": true,
 			"default": false
 		},
 		{
-			"name": "longitude",
+			"name": "templateUrl",
 			"type": "text",
 			"primary": false,
 			"unique": false,
-			"required": false,
+			"required": true,
 			"read": true,
 			"write": true,
 			"default": false
@@ -41,26 +41,6 @@
 			"read": true,
 			"write": true,
 			"default": false
-		},
-		{
-			"name": "id_category",
-			"type": "number",
-			"primary": false,
-			"unique": false,
-			"required": true,
-			"read": true,
-			"write": true,
-			"default": false
-		}
-	],
-	"relations": [
-		{
-			"field": "id_category",
-			"type": "belongsTo",
-			"reference": {
-				"entity": "category",
-				"field": "id"
-			}
 		}
 	]
 }
