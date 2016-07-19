@@ -79,10 +79,12 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
         var category = $scope.categories[i]
         if(category){
           var categoryDataset = $filter('pinsByCategories')($scope.pins, category.id)
+          if(categoryDataset.length >= 1){
           dataSets.push(categoryDataset)
           console.log("Result of categoryDataset :", categoryDataset)
           esriMapPoint.addPointCollection(map, categoryDataset, category.name).then(function(layer) {
             console.log("newLayer created :", layer)
+              }
           })
         }
 
