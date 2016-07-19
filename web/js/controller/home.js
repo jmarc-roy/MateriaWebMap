@@ -9,7 +9,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
     for (y in $scope.categories) {
       $scope.categories[y].visible = true
       if ($scope.categories[y].id == $scope.pins[i].id_category) {
-        if($scope.categories[y].style){
+        if ($scope.categories[y].style) {
           $scope.pins[i].style = $scope.categories[y].style
         }
 
@@ -54,11 +54,11 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
     var view = self.view
     view.then(function(view) {
       view.goTo({
-    center: [1, 47],
-    zoom: 7,
-    heading: 30,
-    tilt: 60
-  })
+        center: [1, 47],
+        zoom: 7,
+        heading: 30,
+        tilt: 60
+      })
       $scope.view = view
       $scope.center = self.view.center
       self.view.watch('center', function() {
@@ -77,15 +77,15 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       for (i in $scope.categories) {
 
         var category = $scope.categories[i]
-        if(category){
+        if (category) {
           var categoryDataset = $filter('pinsByCategories')($scope.pins, category.id)
-          if(categoryDataset.length >= 1){
-          dataSets.push(categoryDataset)
-          console.log("Result of categoryDataset :", categoryDataset)
-          esriMapPoint.addPointCollection(map, categoryDataset, category.name).then(function(layer) {
-            console.log("newLayer created :", layer)
-              }
-          })
+          if (categoryDataset.length >= 1) {
+            dataSets.push(categoryDataset)
+            console.log("Result of categoryDataset :", categoryDataset)
+            esriMapPoint.addPointCollection(map, categoryDataset, category.name).then(function(layer) {
+              console.log("newLayer created :", layer)
+            })
+          }
         }
 
       }
@@ -150,7 +150,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       };
       $scope.layer = layer
       console.log("Layer to edit :", layer)
-      if(layer.style){
+      if (layer.style) {
         if (JSON.parse(layer.style)) {
           $scope.layer.style = JSON.parse(layer.style)
         }
@@ -355,6 +355,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
         })
         .join(' ');
     };
+
     function sanitizePosition() {
       var current = $scope.toastPosition;
       if (current.bottom && last.top) current.top = false;
