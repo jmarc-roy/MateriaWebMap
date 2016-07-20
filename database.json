@@ -3,6 +3,6 @@
 	"port": 5432,
 	"username": "postgres",
 	"password": "uranus",
-	"database": "materiaWebMap",
+	"database": "MateriaWebMap",
 	"type": "postgres"
 }
