@@ -51,7 +51,7 @@
           </md-input-container>
         </div>
         <div ng-hide="layer.style.rendererType=='3D symbol'">
-          <md-input-container >
+          <md-input-container>
             <label for="">Shape</label>
             <md-select ng-model="layer.style.shape" required>
               <md-option>
@@ -65,13 +65,12 @@
               </md-option>
             </md-select>
           </md-input-container>
-
-
+          <md-input-container>
+            <label for="">Size</label>
+            <input ng-model="layer.style.size">
+          </md-input-container>
         </div>
-        <md-input-container>
-          <label for="">Size</label>
-          <input ng-model="layer.style.size">
-        </md-input-container>
+
         <md-input-container>
           <label for="">Color</label>
           <color-picker ng-model="layer.style.color" options="options"></color-picker>

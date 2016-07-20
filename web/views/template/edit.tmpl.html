@@ -5,9 +5,6 @@
         <h2>Edit {{layer.name}}</h2>
       </div>
     </md-toolbar>
-    <div>
-
-    </div>
     <md-dialog-content layout="column" flex>
       <div layout-padding layout-align="row" layout-wrapp>
         <md-input-container>
@@ -65,13 +62,12 @@
               </md-option>
             </md-select>
           </md-input-container>
-
-
+          <md-input-container>
+            <label for="">Size</label>
+            <input ng-model="layer.style.size">
+          </md-input-container>
         </div>
-        <md-input-container>
-          <label for="">Size</label>
-          <input ng-model="layer.style.size">
-        </md-input-container>
+
         <md-input-container>
           <label for="">Color</label>
           <color-picker ng-model="layer.style.color" options="options"></color-picker>

@@ -1,8 +1,8 @@
 {
-	"host": "139.59.182.41",
+	"type": "postgres",
+	"host": "localhost",
 	"port": 5432,
-	"username": "postgres",
-	"password": "uranus",
 	"database": "MateriaWebMap",
-	"type": "postgres"
+	"username": "postgres",
+	"password": "uranus"
 }
