@@ -1,4 +1,4 @@
-<md-dialog aria-label="Importer Fichier" ng-cloak>
+<md-dialog aria-label="addLayer" ng-cloak>
   <form layout="column">
     <md-toolbar>
       <div class="md-toolbar-tools">
@@ -9,23 +9,26 @@
 
     </div>
     <md-dialog-content layout="column" flex>
-      <div layout-padding layout-align="row" layout-wrapp>
-        <md-input-container>
-          <label for="">Name</label>
-          <input ng-model="layer.name">
-        </md-input-container>
-        <md-input-container>
-          <label for="">Renderer type</label>
-
-          <md-select ng-model="layer.style.rendererType" required>
-            <md-option>
-              Simple symbol
-            </md-option>
-            <md-option>
-              3D symbol
-            </md-option>
-          </md-select>
-        </md-input-container>
+      <div layout-padding layout-align="column" layout-wrapp>
+        <div>
+          <md-input-container>
+            <label for="">Name</label>
+            <input ng-model="layer.name">
+          </md-input-container>
+        </div>
+        <div>
+          <md-input-container>
+            <label for="">Renderer type</label>
+            <md-select ng-model="layer.style.rendererType" required>
+              <md-option>
+                Simple symbol
+              </md-option>
+              <md-option>
+                3D symbol
+              </md-option>
+            </md-select>
+          </md-input-container>
+        </div>
         <div ng-show="layer.style.rendererType=='3D symbol'">
           <md-input-container>
             <label for="">3D shape</label>
@@ -37,7 +40,16 @@
                 cylinder
               </md-option>
               <md-option>
+                diamond
+              </md-option>
+              <md-option>
                 cube
+              </md-option>
+              <md-option>
+                cone
+              </md-option>
+              <md-option>
+                tetrahedron
               </md-option>
             </md-select>
           </md-input-container>
@@ -45,12 +57,13 @@
             <label for="">Height</label>
             <input ng-model="layer.style.height">
           </md-input-container>
+
           <md-input-container>
             <label for="">Width</label>
             <input ng-model="layer.style.width">
           </md-input-container>
         </div>
-        <div ng-hide="layer.style.rendererType=='3D symbol'">
+        <div ng-hide="layer.style.rendererType=='3D symbol'" ng-show="(layer.style.rendererType.lenght>=1)">
           <md-input-container>
             <label for="">Shape</label>
             <md-select ng-model="layer.style.shape" required>

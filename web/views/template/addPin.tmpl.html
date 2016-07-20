@@ -2,7 +2,7 @@
   <form layout="column">
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Ajouter une localisation à {{layer.name}}</h2>
+        <h2>Add a point location to {{layer.name}}</h2>
       </div>
     </md-toolbar>
     <md-dialog-content layout="column" flex>
@@ -19,6 +19,10 @@
           <label for="">Latitude</label>
           <input ng-model="pin.latitude">
         </md-input-container>
+        <md-button ng-click="setMapCenterCoordinate()">
+          <md-tooltip>Use map center as coordinate</md-tooltip>
+          <md-icon icon="save">map</md-icon>
+        </md-button>
         <div>
           <md-button ng-click="saveEdits2(pin, layer)">
             <md-icon icon="save">save</md-icon>

@@ -5,6 +5,9 @@
 .ng-scope {
   height: 100%;
 }
+md-select {
+    margin-bottom: 1.25em;
+}
 md-tooltip.ng-scope {
   height: auto;
 }

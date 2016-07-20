@@ -34,7 +34,8 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
     "esri/geometry/Point"
   ], function(Map, SceneView, Point) {
     var map = new Map({
-      basemap: "hybrid"
+      basemap: "hybrid",
+      ground: "world-elevation"
     });
     $scope.map = map
     for (i in $scope.basemaps) {
@@ -187,14 +188,15 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
         })
       }
     }
-    $scope.editCategory = function(ev, layer) {
-
+    $scope.addPin = function(ev, layer) {
+      console.log("In add location map center is:", $scope.center)
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
       $mdDialog.show({
           locals: {
-            layer: layer
+            layer: layer,
+            center: $scope.center
           },
-          controller: EditCategoryTmplController,
+          controller: AddPinTmplController,
           templateUrl: './views/template/addPin.tmpl.html',
           parent: angular.element(document.body),
           targetEvent: ev,
@@ -214,7 +216,8 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
     }
 
 
-    function EditCategoryTmplController($scope, $mdDialog, layer) {
+    function AddPinTmplController($scope, $mdDialog, layer, center) {
+      console.log("CENTERRRRRR", center)
       $scope.hide = function() {
         $mdDialog.hide();
       };
@@ -230,6 +233,11 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
         if (JSON.parse(layer.style)) {
           $scope.layer.style = JSON.parse(layer.style)
         }
+      }
+      $scope.setMapCenterCoordinate = function(){
+        console.log("Set map CENTER COORDINATE /")
+        $scope.pin.longitude = Math.round(center.longitude * 100) / 100
+        $scope.pin.latitude = Math.round(center.latitude * 100) / 100
       }
 
 
