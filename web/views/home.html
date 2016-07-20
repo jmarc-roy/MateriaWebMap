@@ -6,11 +6,11 @@
     <div id="selectMenu" style="background-color: #212121; color: white; font-weight: bold;" layout="column">
       <md-menu layout="column">
         <md-button aria-label="Open phone interactions menu" ng-click="openMenu($mdOpenMenu, $event)">
-          <img ng-src="{{map.basemapTemplateUrl}}" alt="" style="width: 100px; height: 100px;">
+          <img ng-src="{{map.basemapTemplateUrl}}" alt="" style="width: 60px; height: 60px;">
         </md-button>
         <md-menu-content>
           <md-menu-item ng-repeat="basemap in basemaps" layout-padding>
-            <md-button ng-click="changeBasemap(basemap)">
+            <md-button ng-click="changeBasemap(basemap)" class="basemapButton">
               <img ng-src="{{basemap.templateUrl}}" alt="" style="width: 100px; height: 50px;"> {{basemap.alias}}
             </md-button>
           </md-menu-item>
@@ -44,6 +44,10 @@
             <md-button class="md-icon-button" ng-show="!category.expand" flex>
               <md-icon ng-click="category.expand=!category.expand">expand_more</md-icon>
             </md-button>
+            <md-button class="md-icon-button" ng-click="zoomToExtent(category)" aria-label="zoomIn">
+              <md-tooltip>zoom to</md-tooltip>
+              <md-icon style="font-size: 20px;">zoom_in</md-icon>
+            </md-button>
             <md-button class="md-icon-button" ng-click="editCategory($event, category)">
               <md-tooltip>Add a new location</md-tooltip>
               <md-icon>
@@ -66,6 +70,10 @@
               <div>
                 <div ng-repeat="pin in pinfiltered = (pins | filter:{id_category: category.id})" style="padding-left: 20px;">
                   - {{pin.name}}
+                  <md-button class="md-icon-button" ng-click="zoomIn(pin.longitude, pin.latitude)" aria-label="zoomIn">
+                    <md-tooltip>zoom to</md-tooltip>
+                    <md-icon style="font-size: 20px;">zoom_in</md-icon>
+                  </md-button>
                   <md-button class="md-icon-button" ng-click="editPin($event, pin)" aria-label="symbolPopup">
                     <md-tooltip>Edit</md-tooltip>
                     <md-icon style="font-size: 20px;">edit</md-icon>

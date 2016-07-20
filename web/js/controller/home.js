@@ -30,8 +30,9 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
 
   esriLoader.require([
     "esri/Map",
-    "esri/views/SceneView"
-  ], function(Map, SceneView) {
+    "esri/views/SceneView",
+    "esri/geometry/Point"
+  ], function(Map, SceneView, Point) {
     var map = new Map({
       basemap: "hybrid"
     });
@@ -86,13 +87,31 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
 
       }
       $scope.changeLayerVisibility = function(layer) {
-        console.log("LayerVisibility Change :", layer.visible)
+          for (i in map.allLayers.items){
+            if(map.allLayers.items[i].id == layer.name){
+              map.allLayers.items[i].visible = !map.allLayers.items[i].visible
+            }
+          }
       }
-      $scope.zoomIn = function(site) {
+      $scope.zoomIn = function(lng, lat) {
+        console.log("zoom to :", lng, lat)
+        var point = new Point(lng, lat)
         view.goTo({
-          center: [site.lng, site.lat],
-          zoom: 15
+          target: point,
+          zoom: 10,
+          tilt: 45
         })
+
+      }
+      $scope.zoomToExtent= function(layer){
+        for (i in map.allLayers.items){
+          if(map.allLayers.items[i].id == layer.name){
+            console.log("Match for zoom to extent :", map.allLayers.items[i].id, map.allLayers.items[i].extent)
+            view.goTo({
+              target: map.allLayers.items[i].extent
+            })
+          }
+        }
       }
       $scope.$watch(function() {
         return $scope.view.zoom
