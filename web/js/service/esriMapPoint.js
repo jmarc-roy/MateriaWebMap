@@ -6,7 +6,7 @@ app.factory('esriMapPoint', function(esriLoader, $http, $q) {
       if (ok) {
         var extractedField = []
         var style = {}
-        console.log("String to parse :", PointCollection[0])
+
         if (JSON.parse(PointCollection[0].style)) {
           style = JSON.parse(PointCollection[0].style)
         } else {
@@ -14,7 +14,7 @@ app.factory('esriMapPoint', function(esriLoader, $http, $q) {
         }
         for (i in PointCollection[0]) {
           var type = typeof PointCollection[0][i]
-          console.log("Type of field value :", i, " : ", type)
+
           switch (type) {
             case 'number':
               var obj = {}
@@ -42,7 +42,6 @@ app.factory('esriMapPoint', function(esriLoader, $http, $q) {
           }
         }
 
-        console.log("extracted field test :", extractedField)
         esriLoader.require([
           'esri/Map',
           "esri/views/SceneView",
@@ -109,7 +108,6 @@ app.factory('esriMapPoint', function(esriLoader, $http, $q) {
               })
               break;
             case '3D symbol':
-              console.log('PICTURE CASE :', style)
               var objectSymbol = new PointSymbol3D({
             symbolLayers: [new ObjectSymbol3DLayer({
               width: style.width,
@@ -180,7 +178,7 @@ app.factory('esriMapPoint', function(esriLoader, $http, $q) {
           featureLayer.labelsVisible = true
           featureLayer.labelingInfo = [lc]
           featureLayer.on("layerview-create", function(result) {
-            console.log("Layer view created :", result.layerView)
+
             result.layerView.queryExtent().then(function(evt) {
               result.target.extent = evt.extent
             })

@@ -65,7 +65,7 @@
 	},
 	{
 		"method": "post",
-		"url": "/POST/pin",
+		"url": "/POST/pin/",
 		"query": {
 			"entity": "pins",
 			"id": "create"

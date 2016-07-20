@@ -12,7 +12,6 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
         if ($scope.categories[y].style) {
           $scope.pins[i].style = $scope.categories[y].style
         }
-
       }
     }
   }
@@ -73,17 +72,14 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       esriMapWidget.Legend(view)
 
       var dataSets = []
-      console.log("View :", view)
-      for (i in $scope.categories) {
 
+      for (i in $scope.categories) {
         var category = $scope.categories[i]
         if (category) {
           var categoryDataset = $filter('pinsByCategories')($scope.pins, category.id)
           if (categoryDataset.length >= 1) {
             dataSets.push(categoryDataset)
-            console.log("Result of categoryDataset :", categoryDataset)
             esriMapPoint.addPointCollection(map, categoryDataset, category.name).then(function(layer) {
-              console.log("newLayer created :", layer)
             })
           }
         }
@@ -101,7 +97,6 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       $scope.$watch(function() {
         return $scope.view.zoom
       }, function(newVal, oldVal) {
-        console.log("zoom change :", newVal)
         if (newVal > 15) {
           $scope.view.zoom = 15
         }
@@ -113,7 +108,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       $mdOpenMenu(ev)
     }
     $scope.edit = function(ev, layer) {
-      console.log("layer in template :", layer)
+
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
       $mdDialog.show({
           locals: {
@@ -127,7 +122,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
           fullscreen: useFullScreen
         })
         .then(function(layer) {
-          console.log("Then of show dialog :", layer)
+
         }, function() {
           $scope.status = 'You cancelled the dialog.';
         });
@@ -149,29 +144,21 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
         $mdDialog.hide(answer);
       };
       $scope.layer = layer
-      console.log("Layer to edit :", layer)
-      if (layer.style) {
-        if (JSON.parse(layer.style)) {
+
+      if (typeof layer.style == 'string') {
           $scope.layer.style = JSON.parse(layer.style)
-        }
       }
-
-
       $scope.options = {
         format: 'hex'
       }
 
       $scope.saveEdits = function(layer) {
-        console.log("Layer to edit :", layer)
+
         var newLayer = {}
         newLayer.name = layer.name
         newLayer.id = layer.id
         newLayer.style = JSON.stringify(layer.style)
-        console.log("Layer to post :", newLayer)
-
         $http.put('./api/PUT/category/' + newLayer.id, newLayer).success(function(updatedLayer) {
-          console.log("The layer has been successfully updated :", updatedLayer)
-
           $mdDialog.hide()
           $state.transitionTo($state.current, $stateParams, {
             reload: true,
@@ -182,7 +169,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       }
     }
     $scope.editCategory = function(ev, layer) {
-      console.log("layer in template :", layer)
+
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
       $mdDialog.show({
           locals: {
@@ -196,7 +183,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
           fullscreen: useFullScreen
         })
         .then(function(layer) {
-          console.log("Then of show dialog :", layer)
+
         }, function() {
           $scope.status = 'You cancelled the dialog.';
         });
@@ -220,7 +207,6 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       };
       $scope.layer = layer
 
-      console.log("Layer to edit :", layer)
       if (typeof layer.style == 'string') {
         if (JSON.parse(layer.style)) {
           $scope.layer.style = JSON.parse(layer.style)
@@ -232,10 +218,8 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
         format: 'hex'
       }
       $scope.saveEdits2 = function(pin, layer) {
-        console.log("Layer to edit 2:", pin)
         pin.id_category = layer.id
         $http.post('./api/POST/pin/', pin).success(function(updatedLayer) {
-          console.log("The layer has been successfully updated :", updatedLayer)
           $mdDialog.hide()
           $state.transitionTo($state.current, $stateParams, {
             reload: true,
@@ -256,9 +240,9 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
           fullscreen: useFullScreen
         })
         .then(function(layer) {
-          console.log("Then of show dialog :", layer)
+
         }, function() {
-          $scope.status = 'You cancelled the dialog.';
+
         });
       $scope.$watch(function() {
         return $mdMedia('xs') || $mdMedia('sm');
@@ -281,7 +265,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       $scope.saveEdits3 = function(category) {
         $scope.layer.style = JSON.stringify(category.style)
         $http.post('./api/POST/categorie/', category).success(function(updatedLayer) {
-          console.log("The layer has been successfully updated :", updatedLayer)
+
           $mdDialog.cancel()
           $state.transitionTo($state.current, $stateParams, {
             reload: true,
@@ -308,7 +292,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
           fullscreen: useFullScreen
         })
         .then(function(layer) {
-          console.log("Then of show dialog :", layer)
+
         }, function() {
           $scope.status = 'You cancelled the dialog.';
         });
@@ -334,7 +318,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       $scope.saveEdits4 = function(category) {
 
         $http.put('./api/PUT/pin/' + category.id, category).success(function(updatedLayer) {
-          console.log("The layer has been successfully updated :", updatedLayer)
+
           $mdDialog.cancel()
           $state.transitionTo($state.current, $stateParams, {
             reload: true,
@@ -365,7 +349,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       last = angular.extend({}, current);
     }
     $scope.confirmDeletePin = function(ev, pin) {
-      console.log(pin)
+
       $scope.pin = pin
         // Appending dialog to document.body to cover sidenav in docs app
       var confirm = $mdDialog.confirm()
@@ -376,7 +360,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
         .ok('Yes')
         .cancel('Cancel');
       $mdDialog.show(confirm, pin).then(function(pin) {
-        console.log("g")
+
         $http.delete('./api/pins/' + $scope.pin.id).success(function() {
           $mdToast.show(
             $mdToast.simple()
@@ -403,7 +387,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       });
     }
     $scope.confirmDeleteCategory = function(ev, pin) {
-      console.log(pin)
+
       $scope.category = pin
         // Appending dialog to document.body to cover sidenav in docs app
       var confirm = $mdDialog.confirm()
@@ -414,7 +398,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
         .ok('Yes')
         .cancel('Cancel');
       $mdDialog.show(confirm, pin).then(function(pin) {
-        console.log("g")
+
         $http.delete('./api/category/' + $scope.category.id).success(function() {
           $mdToast.show(
             $mdToast.simple()
