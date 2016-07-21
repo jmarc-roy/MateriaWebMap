@@ -88,8 +88,18 @@ md-list#layers .pins .md-button.md-icon-button {
   height: inherit;
 }
 
+md-list#layers .pins > div {
+  cursor: pointer;
+}
+md-list#layers .pins > div:hover {
+  background-color: #EEE;
+}
+
+
 md-list#layers .pins md-icon {
   font-size: 18px;
+  position: relative;
+  top: 2px;
 }
 
 md-list#layers .pins p {
