@@ -46,3 +46,52 @@ md-tooltip.ng-scope {
   line-height: 30px;
   overflow: auto;
 }
+
+.text-line-1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    line-height: 24px; /* fallback */
+    max-height: 24px;
+}
+
+md-list#layers md-list-item.active {
+  background-color: #EEE;
+}
+
+md-list#layers .small-toolbar {
+  height: 30px;
+  background-color: #666;
+  color: white;
+}
+
+md-list#layers .small-toolbar md-icon {
+  font-size: 14px !important;
+  color: white;
+}
+md-list#layers .pins, md-list#layers .empty {
+  border-bottom: 2px solid #666;
+}
+
+md-list#layers .empty {
+  color: #666;
+  font-style: italic;
+  font-size: 0.85em;
+}
+
+md-list#layers .pins .md-button.md-icon-button {
+  margin: 0;
+  line-height: 18px;
+  padding: 0;
+  height: inherit;
+}
+
+md-list#layers .pins md-icon {
+  font-size: 18px;
+}
+
+md-list#layers .pins p {
+  font-size: 13px;
+}

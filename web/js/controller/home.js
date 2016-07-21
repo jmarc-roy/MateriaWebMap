@@ -85,14 +85,14 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
             })
           }
         }
-
       }
       $scope.changeLayerVisibility = function(layer) {
-          for (i in map.allLayers.items){
-            if(map.allLayers.items[i].id == layer.name){
-              map.allLayers.items[i].visible = !map.allLayers.items[i].visible
-            }
+        layer.visible = ! layer.visible;
+        for (i in map.allLayers.items){
+          if(map.allLayers.items[i].id == layer.name){
+            map.allLayers.items[i].visible = !map.allLayers.items[i].visible
           }
+        }
       }
       $scope.zoomIn = function(lng, lat) {
         console.log("zoom to :", lng, lat)
