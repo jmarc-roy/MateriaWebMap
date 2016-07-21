@@ -1,5 +1,5 @@
 <div layout="row">
-  <div id="viewDiv" flex="80">
+  <div id="viewDiv" flex>
     <div id="mapCenter" layout-padding style="background-color: #212121; color: white;">
     longitude: {{center.longitude | number:2}}, latitude: {{center.latitude | number:2}}
     </div>
@@ -18,11 +18,69 @@
       </md-menu>
     </div>
   </div>
-  <div flex layout="column" style="min-width: 200px;">
+  <div layout="column" style="width: 220px;">
     <md-card flex layout="column" style="margin: 0; padding: 0;">
       <md-toolbar class="md-toolbar-tools md-hue-1">
         <p>
-          <md-icon>layers</md-icon> Layer list</p>
+          <md-icon>layers</md-icon> Layer list
+        </p>
+        <md-button class="md-icon-button" ng-click="addCategory($event)">
+          <md-tooltip>create a new layer</md-tooltip>
+          <md-icon>
+            add_box
+          </md-icon>
+        </md-button>
+      </md-toolbar>
+      <md-list id="layers">
+        <div ng-repeat="category in categories">
+          <md-list-item ng-class="{'active': category.expand}" ng-click="category.expand=!category.expand">
+            <p class="text-line-1" style="width: ">{{category.name}}</p>
+            <md-icon class="md-secondary" ng-click="changeLayerVisibility(category)">{{category.visible ? 'visibility' : 'visibility_off'}}</md-icon>
+          </md-list-item>
+          <div layout="column" ng-if="category.expand">
+            <div class="small-toolbar" layout="row">
+              <md-button class="md-icon-button" ng-click="zoomToExtent(category)" aria-label="zoomIn">
+                <md-tooltip>zoom to</md-tooltip>
+                <md-icon style="font-size: 20px;">zoom_in</md-icon>
+              </md-button>
+              <md-button class="md-icon-button" ng-click="addPin($event, category)">
+                <md-tooltip>Add a new location</md-tooltip>
+                <md-icon>add</md-icon>
+              </md-button>
+              <md-button class="md-icon-button" ng-click="edit($event, category)" aria-label="symbolPopup">
+                <md-tooltip>Edit</md-tooltip>
+                <md-icon>edit</md-icon>
+              </md-button>
+              <md-button class="md-icon-button" ng-click="confirmDeleteCategory($event, category)">
+                <md-tooltip>Delete</md-tooltip>
+                <md-icon>cancel</md-icon>
+              </md-button>
+            </div>
+
+            <div layout-padding class="empty" ng-if=" ! (pins | filter:{id_category: category.id}).length" layout="row" layout-align="center center">This layer is empty, please add some points location</div>
+            <div class="pins" ng-if="(pins | filter:{id_category: category.id}).length">
+              <div layout="row" layout-padding ng-click="zoomIn(pin.longitude, pin.latitude)" ng-repeat="pin in pins | filter:{id_category: category.id}">
+                <md-icon>place</md-icon>
+                <p class="text-line-1" flex>{{pin.name}}</p>
+
+                <md-button class="md-secondary md-icon-button" ng-click="editPin($event, pin)">
+                  <md-tooltip>Edit</md-tooltip>
+                  <md-icon>edit</md-icon>
+                </md-button>
+                <md-button class="md-secondary md-icon-button">
+                  <md-tooltip>Remove</md-tooltip>
+                  <md-icon ng-click="confirmDeletePin($event, pin)">cancel</md-icon>
+                </md-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </md-list>
+
+      <!--<md-toolbar class="md-toolbar-tools md-hue-1">
+        <p>
+          <md-icon>layers</md-icon> Layer list
+        </p>
         <md-button class="md-icon-button" ng-click="addCategory($event)">
           <md-tooltip>create a new layer</md-tooltip>
           <md-icon>
@@ -89,7 +147,7 @@
           </div>
         </md-content>
       </div>
-      </p>
+      -->
+    </md-card>
   </div>
-  </md-card>
 </div>
