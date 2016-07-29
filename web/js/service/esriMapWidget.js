@@ -23,7 +23,7 @@ app.factory('esriMapWidget', function(esriLoader, $http, $q) {
         legend.title = "Légende :"
         legend.startup()
         deffered.resolve(legend)
-        view.ui.add(legend, "middle-left");
+        view.ui.add(legend, "left");
       })
       return deffered.promise
     },

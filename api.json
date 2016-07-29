@@ -70,5 +70,13 @@
 			"entity": "pins",
 			"id": "create"
 		}
+	},
+	{
+		"method": "get",
+		"url": "/catrs",
+		"query": {
+			"entity": "restaurants",
+			"id": "list"
+		}
 	}
 ]

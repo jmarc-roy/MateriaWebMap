@@ -100,7 +100,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
         view.goTo({
           target: point,
           zoom: 10,
-          tilt: 45
+          tilt: 43
         })
 
       }
