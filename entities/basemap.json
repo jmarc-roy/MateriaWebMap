@@ -42,5 +42,15 @@
 			"write": true,
 			"default": false
 		}
+	],
+	"queries": [
+		{
+			"id": "addBasemap",
+			"type": "custom",
+			"params": [],
+			"opts": {
+				"file": "entities\\queries\\basemap.addBasemap"
+			}
+		}
 	]
 }

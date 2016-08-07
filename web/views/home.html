@@ -5,11 +5,11 @@
     </div>
     <div id="selectMenu" style="background-color: #212121; color: white; font-weight: bold;" layout="column">
       <md-menu layout="column">
-        <md-button aria-label="Open phone interactions menu" ng-click="openMenu($mdOpenMenu, $event)">
-          <img ng-src="{{map.basemapTemplateUrl}}" alt="" style="width: 60px; height: 60px;">
+        <md-button aria-label="Open basempap list" ng-click="openMenu($mdOpenMenu, $event)" >
+          <img ng-src="{{map.basemapTemplateUrl}}" alt="" style="width: 100px; height: 60px;">
         </md-button>
         <md-menu-content>
-          <md-menu-item ng-repeat="basemap in basemaps" layout-padding>
+          <md-menu-item ng-repeat="basemap in basemaps" layout-padding layout-margin>
             <md-button ng-click="changeBasemap(basemap)" class="basemapButton">
               <img ng-src="{{basemap.templateUrl}}" alt="" style="width: 100px; height: 50px;"> {{basemap.alias}}
             </md-button>
@@ -74,6 +74,7 @@
                 </div>
               </div>
             </div>
+            <md-divider></md-divider>
           </div>
         </md-content>
       </md-list>

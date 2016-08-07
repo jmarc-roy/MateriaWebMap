@@ -1,13 +1,10 @@
 <md-dialog aria-label="addLayer" ng-cloak>
   <form layout="column">
-    <md-toolbar>
+    <md-toolbar class="md-hue-1">
       <div class="md-toolbar-tools">
         <h2>Add layer</h2>
       </div>
     </md-toolbar>
-    <div>
-
-    </div>
     <md-dialog-content layout="column" flex>
       <div layout-padding layout-align="column" layout-wrapp>
         <div>
@@ -29,7 +26,7 @@
             </md-select>
           </md-input-container>
         </div>
-        <div ng-show="layer.style.rendererType=='3D symbol'">
+        <div ng-show="layer.style.rendererType=='3D symbol'" layout="column">
           <md-input-container>
             <label for="">3D shape</label>
             <md-select ng-model="layer.style.shape3D" required>
@@ -53,17 +50,19 @@
               </md-option>
             </md-select>
           </md-input-container>
-          <md-input-container>
-            <label for="">Height</label>
-            <input ng-model="layer.style.height">
-          </md-input-container>
+          <div layout="row">
+            <md-input-container>
+              <label for="">Height</label>
+              <input ng-model="layer.style.height">
+            </md-input-container>
+            <md-input-container>
+              <label for="">Width</label>
+              <input ng-model="layer.style.width">
+            </md-input-container>
+          </div>
 
-          <md-input-container>
-            <label for="">Width</label>
-            <input ng-model="layer.style.width">
-          </md-input-container>
         </div>
-        <div ng-hide="layer.style.rendererType=='3D symbol'" ng-show="(layer.style.rendererType.lenght>=1)">
+        <div ng-hide="layer.style.rendererType=='3D symbol'" ng-show="(layer.style.rendererType.lenght>=1)" layout="column">
           <md-input-container>
             <label for="">Shape</label>
             <md-select ng-model="layer.style.shape" required>

@@ -682,5 +682,45 @@
 				]
 			}
 		}
+	},
+	{
+		"undo": {
+			"type": "delete_query",
+			"table": "basemap",
+			"id": "addBasemap"
+		},
+		"redo": {
+			"type": "add_query",
+			"table": "basemap",
+			"id": "addBasemap",
+			"value": {
+				"id": "addBasemap",
+				"type": "create",
+				"params": [],
+				"opts": {
+					"values": {}
+				}
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_query",
+			"table": "basemap",
+			"id": "addBasemap"
+		},
+		"redo": {
+			"type": "add_query",
+			"table": "basemap",
+			"id": "addBasemap",
+			"value": {
+				"id": "addBasemap",
+				"type": "custom",
+				"params": [],
+				"opts": {
+					"file": "entities\\queries\\basemap.addBasemap"
+				}
+			}
+		}
 	}
 ]

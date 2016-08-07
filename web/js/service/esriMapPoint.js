@@ -166,7 +166,7 @@ app.factory('esriMapPoint', function(esriLoader, $http, $q) {
         });
         for (i in featureLayer.fields) {
           var field = featureLayer.fields[i]
-          popup.content = popup.content + "<p><strong>" + field.name + "</strong>: <p style='color: blue;'>{" + field.name + "}</p>"
+          popup.content = popup.content + "<p>"+ field.name + " : {" + field.name + "} </p>"
         }
         map.add(featureLayer)
         featureLayer.labelsVisible = true
