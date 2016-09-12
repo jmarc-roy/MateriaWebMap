@@ -62,5 +62,27 @@
 				"field": "id"
 			}
 		}
+	],
+	"queries": [
+		{
+			"id": "deletePinByCategorie",
+			"type": "sql",
+			"params": [
+				{
+					"type": "number",
+					"name": "idCategory",
+					"required": true,
+					"$$hashKey": "object:2679",
+					"checked": true,
+					"value": 4
+				}
+			],
+			"opts": {
+				"values": {
+					"idCategory": "="
+				},
+				"query": "DELETE\nFROM pins WHERE pins.id_category = :idCategory"
+			}
+		}
 	]
 }

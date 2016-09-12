@@ -1,4 +1,4 @@
-app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $timeout,
+app.controller('MateriaWebMapController', function ($scope, $http, $mdDialog, $timeout,
   $mdMedia, $mdToast, esriLoader, pins, categories, esriMapPoint, $state, $stateParams, $filter, basemaps, esriMapWidget) {
   var self = this
   $scope.basemaps = basemaps.data.rows
@@ -22,7 +22,7 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
     right: false
   };
   var originatorEv;
-  this.openMenu = function($mdOpenMenu, ev) {
+  this.openMenu = function ($mdOpenMenu, ev) {
     originatorEv = ev;
     $mdOpenMenu(ev);
   };
@@ -32,7 +32,7 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
     "esri/Map",
     "esri/views/SceneView",
     "esri/geometry/Point"
-  ], function(Map, SceneView, Point) {
+  ], function (Map, SceneView, Point) {
     var map = new Map({
       basemap: "hybrid",
       ground: "world-elevation"
@@ -53,7 +53,7 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
       tilt: 20
     });
     var view = self.view
-    view.then(function(view) {
+    view.then(function (view) {
       view.goTo({
         center: [1, 47],
         zoom: 7,
@@ -62,11 +62,11 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
       })
       $scope.view = view
       $scope.center = self.view.center
-      self.view.watch('center', function() {
+      self.view.watch('center', function () {
         $scope.center = self.view.center
         $scope.$applyAsync('center');
       })
-      $scope.changeBasemap = function(newVal) {
+      $scope.changeBasemap = function (newVal) {
         $scope.map.basemap = newVal.name
         $scope.map.basemapTemplateUrl = newVal.templateUrl
       }
@@ -81,20 +81,20 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
           var categoryDataset = $filter('pinsByCategories')($scope.pins, category.id)
           if (categoryDataset.length >= 1) {
             dataSets.push(categoryDataset)
-            esriMapPoint.addPointCollection(map, categoryDataset, category.name).then(function(layer) {
+            esriMapPoint.addPointCollection(map, categoryDataset, category.name).then(function (layer) {
             })
           }
         }
       }
-      $scope.changeLayerVisibility = function(layer) {
-        layer.visible = ! layer.visible;
-        for (i in map.allLayers.items){
-          if(map.allLayers.items[i].id == layer.name){
+      $scope.changeLayerVisibility = function (layer) {
+        layer.visible = !layer.visible;
+        for (i in map.allLayers.items) {
+          if (map.allLayers.items[i].id == layer.name) {
             map.allLayers.items[i].visible = !map.allLayers.items[i].visible
           }
         }
       }
-      $scope.zoomIn = function(lng, lat) {
+      $scope.zoomIn = function (lng, lat) {
         console.log("zoom to :", lng, lat)
         var point = new Point(lng, lat)
         view.goTo({
@@ -104,9 +104,9 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
         })
 
       }
-      $scope.zoomToExtent= function(layer){
-        for (i in map.allLayers.items){
-          if(map.allLayers.items[i].id == layer.name){
+      $scope.zoomToExtent = function (layer) {
+        for (i in map.allLayers.items) {
+          if (map.allLayers.items[i].id == layer.name) {
             console.log("Match for zoom to extent :", map.allLayers.items[i].id, map.allLayers.items[i].extent)
             view.goTo({
               target: map.allLayers.items[i].extent
@@ -114,71 +114,71 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
           }
         }
       }
-      $scope.$watch(function() {
+      $scope.$watch(function () {
         return $scope.view.zoom
-      }, function(newVal, oldVal) {
+      }, function (newVal, oldVal) {
         if (newVal > 15) {
           $scope.view.zoom = 15
         }
       })
     });
     originatorEv = null
-    $scope.openMenu = function($mdOpenMenu, ev) {
+    $scope.openMenu = function ($mdOpenMenu, ev) {
       originatorEv = ev
       $mdOpenMenu(ev)
     }
-    $scope.edit = function(ev, layer) {
+    $scope.edit = function (ev, layer) {
 
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
       $mdDialog.show({
-          locals: {
-            layer: layer
-          },
-          controller: EditTmplController,
-          templateUrl: './views/template/editCategory.tmpl.html',
-          parent: angular.element(document.body),
-          targetEvent: ev,
-          clickOutsideToClose: true,
-          fullscreen: useFullScreen
-        })
-        .then(function(layer) {
+        locals: {
+          layer: layer
+        },
+        controller: EditTmplController,
+        templateUrl: './views/template/editCategory.tmpl.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        fullscreen: useFullScreen
+      })
+        .then(function (layer) {
 
-        }, function() {
+        }, function () {
           $scope.status = 'You cancelled the dialog.';
         });
-      $scope.$watch(function() {
+      $scope.$watch(function () {
         return $mdMedia('xs') || $mdMedia('sm');
-      }, function(wantsFullScreen) {
+      }, function (wantsFullScreen) {
         $scope.customFullscreen = (wantsFullScreen === true);
       });
     }
 
     function EditTmplController($scope, $mdDialog, layer) {
-      $scope.hide = function() {
+      $scope.hide = function () {
         $mdDialog.hide();
       };
-      $scope.cancel = function() {
+      $scope.cancel = function () {
         $mdDialog.cancel();
       };
-      $scope.answer = function(answer) {
+      $scope.answer = function (answer) {
         $mdDialog.hide(answer);
       };
       $scope.layer = layer
 
       if (typeof layer.style == 'string') {
-          $scope.layer.style = JSON.parse(layer.style)
+        $scope.layer.style = JSON.parse(layer.style)
       }
       $scope.options = {
         format: 'hex'
       }
 
-      $scope.saveEdits = function(layer) {
+      $scope.saveEdits = function (layer) {
 
         var newLayer = {}
         newLayer.name = layer.name
         newLayer.id = layer.id
         newLayer.style = JSON.stringify(layer.style)
-        $http.put('./api/category/' + newLayer.id, newLayer).success(function(updatedLayer) {
+        $http.put('./api/category/' + newLayer.id, newLayer).success(function (updatedLayer) {
           $mdDialog.hide()
           $state.transitionTo($state.current, $stateParams, {
             reload: true,
@@ -188,29 +188,29 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
         })
       }
     }
-    $scope.addPin = function(ev, layer) {
+    $scope.addPin = function (ev, layer) {
       console.log("In add location map center is:", $scope.center)
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
       $mdDialog.show({
-          locals: {
-            layer: layer,
-            center: $scope.center
-          },
-          controller: AddPinTmplController,
-          templateUrl: './views/template/addPin.tmpl.html',
-          parent: angular.element(document.body),
-          targetEvent: ev,
-          clickOutsideToClose: true,
-          fullscreen: useFullScreen
-        })
-        .then(function(layer) {
+        locals: {
+          layer: layer,
+          center: $scope.center
+        },
+        controller: AddPinTmplController,
+        templateUrl: './views/template/addPin.tmpl.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        fullscreen: useFullScreen
+      })
+        .then(function (layer) {
 
-        }, function() {
+        }, function () {
           $scope.status = 'You cancelled the dialog.';
         });
-      $scope.$watch(function() {
+      $scope.$watch(function () {
         return $mdMedia('xs') || $mdMedia('sm');
-      }, function(wantsFullScreen) {
+      }, function (wantsFullScreen) {
         $scope.customFullscreen = (wantsFullScreen === true);
       });
     }
@@ -218,13 +218,13 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
 
     function AddPinTmplController($scope, $mdDialog, layer, center) {
       console.log("CENTERRRRRR", center)
-      $scope.hide = function() {
+      $scope.hide = function () {
         $mdDialog.hide();
       };
-      $scope.cancel = function() {
+      $scope.cancel = function () {
         $mdDialog.cancel();
       };
-      $scope.answer = function(answer) {
+      $scope.answer = function (answer) {
         $mdDialog.hide(answer);
       };
       $scope.layer = layer
@@ -234,7 +234,7 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
           $scope.layer.style = JSON.parse(layer.style)
         }
       }
-      $scope.setMapCenterCoordinate = function(){
+      $scope.setMapCenterCoordinate = function () {
         console.log("Set map CENTER COORDINATE /")
         $scope.pin.longitude = Math.round(center.longitude * 100) / 100
         $scope.pin.latitude = Math.round(center.latitude * 100) / 100
@@ -244,9 +244,9 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
       $scope.options = {
         format: 'hex'
       }
-      $scope.saveEdits2 = function(pin, layer) {
+      $scope.saveEdits2 = function (pin, layer) {
         pin.id_category = layer.id
-        $http.post('./api/pin/', pin).success(function(updatedLayer) {
+        $http.post('./api/pin/', pin).success(function (updatedLayer) {
           $mdDialog.hide()
           $state.transitionTo($state.current, $stateParams, {
             reload: true,
@@ -256,112 +256,112 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
         })
       }
     }
-    $scope.addCategory = function(ev) {
+    $scope.addCategory = function (ev) {
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
       $mdDialog.show({
-          controller: AddCategoryTmplController,
-          templateUrl: './views/template/addCategory.tmpl.html',
-          parent: angular.element(document.body),
-          targetEvent: ev,
-          clickOutsideToClose: true,
-          fullscreen: useFullScreen
-        })
-        .then(function(layer) {
+        controller: AddCategoryTmplController,
+        templateUrl: './views/template/addCategory.tmpl.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        fullscreen: useFullScreen
+      })
+        .then(function (layer) {
 
-        }, function() {
+        }, function () {
 
         });
-      $scope.$watch(function() {
+      $scope.$watch(function () {
         return $mdMedia('xs') || $mdMedia('sm');
-      }, function(wantsFullScreen) {
+      }, function (wantsFullScreen) {
         $scope.customFullscreen = (wantsFullScreen === true);
       });
     }
 
     function AddCategoryTmplController($scope, $mdDialog) {
-      $scope.hide = function() {
+      $scope.hide = function () {
         $mdDialog.hide();
       };
-      $scope.cancel = function() {
+      $scope.cancel = function () {
         $mdDialog.cancel();
       };
-      $scope.answer = function(answer) {
+      $scope.answer = function (answer) {
         $mdDialog.hide(answer);
       };
       $scope.layer = {}
-      $scope.saveEdits3 = function(category) {
+      $scope.saveEdits3 = function (category) {
         $scope.layer.style = JSON.stringify(category.style)
-        $http.post('./api/category/', category).success(function(updatedLayer) {
+        $http.post('./api/category/', category).success(function (updatedLayer) {
 
           $mdDialog.cancel()
           $state.transitionTo($state.current, $stateParams, {
             reload: true,
             inherit: false,
             notify: true
-          }).fail(function(err) {
+          }).fail(function (err) {
             console.log("Err :", err)
           });
         })
       }
     }
 
-    $scope.editPin = function(ev, pin) {
+    $scope.editPin = function (ev, pin) {
       var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
       $mdDialog.show({
-          locals: {
-            pin: pin
-          },
-          controller: EditPinTmplController,
-          templateUrl: './views/template/editPin.tmpl.html',
-          parent: angular.element(document.body),
-          targetEvent: ev,
-          clickOutsideToClose: true,
-          fullscreen: useFullScreen
-        })
-        .then(function(layer) {
+        locals: {
+          pin: pin
+        },
+        controller: EditPinTmplController,
+        templateUrl: './views/template/editPin.tmpl.html',
+        parent: angular.element(document.body),
+        targetEvent: ev,
+        clickOutsideToClose: true,
+        fullscreen: useFullScreen
+      })
+        .then(function (layer) {
 
-        }, function() {
+        }, function () {
           $scope.status = 'You cancelled the dialog.';
         });
-      $scope.$watch(function() {
+      $scope.$watch(function () {
         return $mdMedia('xs') || $mdMedia('sm');
-      }, function(wantsFullScreen) {
+      }, function (wantsFullScreen) {
         $scope.customFullscreen = (wantsFullScreen === true);
       });
     }
 
     function EditPinTmplController($scope, $mdDialog, pin) {
       $scope.pin = pin
-      $scope.hide = function() {
+      $scope.hide = function () {
         $mdDialog.hide();
       };
-      $scope.cancel = function() {
+      $scope.cancel = function () {
         $mdDialog.cancel();
       };
-      $scope.answer = function(answer) {
+      $scope.answer = function (answer) {
         $mdDialog.hide(answer);
       };
       $scope.layer = {}
-      $scope.saveEdits4 = function(category) {
+      $scope.saveEdits4 = function (category) {
 
-        $http.put('./api/pin/' + category.id, category).success(function(updatedLayer) {
+        $http.put('./api/pin/' + category.id, category).success(function (updatedLayer) {
 
           $mdDialog.cancel()
           $state.transitionTo($state.current, $stateParams, {
             reload: true,
             inherit: false,
             notify: true
-          }).fail(function(err) {
+          }).fail(function (err) {
             console.log("Err :", err)
           });
         })
       }
     }
     $scope.toastPosition = angular.extend({}, last);
-    $scope.getToastPosition = function() {
+    $scope.getToastPosition = function () {
       sanitizePosition();
       return Object.keys($scope.toastPosition)
-        .filter(function(pos) {
+        .filter(function (pos) {
           return $scope.toastPosition[pos];
         })
         .join(' ');
@@ -375,10 +375,10 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
       if (current.left && last.right) current.right = false;
       last = angular.extend({}, current);
     }
-    $scope.confirmDeletePin = function(ev, pin) {
+    $scope.confirmDeletePin = function (ev, pin) {
 
       $scope.pin = pin
-        // Appending dialog to document.body to cover sidenav in docs app
+      // Appending dialog to document.body to cover sidenav in docs app
       var confirm = $mdDialog.confirm()
         .title('You are going to delete a location :', pin.name)
         .textContent('All information about this point will be definitevely lost. Are you sure?')
@@ -386,37 +386,37 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
         .targetEvent(ev)
         .ok('Yes')
         .cancel('Cancel');
-      $mdDialog.show(confirm, pin).then(function(pin) {
+      $mdDialog.show(confirm, pin).then(function (pin) {
 
-        $http.delete('./api/pins/' + $scope.pin.id).success(function() {
+        $http.delete('./api/pin/' + $scope.pin.id).success(function () {
           $mdToast.show(
             $mdToast.simple()
-            .textContent("operation success, reloading...")
-            .position($scope.getToastPosition())
-            .hideDelay(1000)
-          ).then(function() {
+              .textContent("operation success, reloading...")
+              .position($scope.getToastPosition())
+              .hideDelay(1000)
+          ).then(function () {
             $state.transitionTo($state.current, $stateParams, {
               reload: true,
               inherit: false,
               notify: true
-            }).fail(function(err) {
+            }).fail(function (err) {
               console.log("Err :", err)
             });
           })
         })
-      }, function() {
+      }, function () {
         $mdToast.show(
           $mdToast.simple()
-          .textContent("operation aborded")
-          .position($scope.getToastPosition())
-          .hideDelay(1000)
+            .textContent("operation aborded")
+            .position($scope.getToastPosition())
+            .hideDelay(1000)
         )
       });
     }
-    $scope.confirmDeleteCategory = function(ev, pin) {
+    $scope.confirmDeleteCategory = function (ev, pin) {
 
       $scope.category = pin
-        // Appending dialog to document.body to cover sidenav in docs app
+      // Appending dialog to document.body to cover sidenav in docs app
       var confirm = $mdDialog.confirm()
         .title('You are going to delete a Category :', $scope.category.name)
         .textContent('All information about this category will be definitevely lost and all related points location. Are you sure?')
@@ -424,30 +424,32 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
         .targetEvent(ev)
         .ok('Yes')
         .cancel('Cancel');
-      $mdDialog.show(confirm, pin).then(function(pin) {
-
-        $http.delete('./api/category/' + $scope.category.id).success(function() {
-          $mdToast.show(
-            $mdToast.simple()
-            .textContent("operation success, reloading...")
-            .position($scope.getToastPosition())
-            .hideDelay(1000)
-          ).then(function() {
-            $state.transitionTo($state.current, $stateParams, {
-              reload: true,
-              inherit: false,
-              notify: true
-            }).fail(function(err) {
-              console.log("Err :", err)
-            });
+      $mdDialog.show(confirm, pin).then(function (pin) {
+        $http.delete('./api/pins/' + $scope.category.id).success(function () { //Line to be remove => Materia issue: https://github.com/webshell/materia-designer/issues/47
+          $http.delete('./api/category/' + $scope.category.id).success(function () {
+            $mdToast.show(
+              $mdToast.simple()
+                .textContent("operation success, reloading...")
+                .position($scope.getToastPosition())
+                .hideDelay(1000)
+            ).then(function () {
+              $state.transitionTo($state.current, $stateParams, {
+                reload: true,
+                inherit: false,
+                notify: true
+              }).fail(function (err) {
+                console.log("Err :", err)
+              });
+            })
           })
         })
-      }, function() {
+
+      }, function () {
         $mdToast.show(
           $mdToast.simple()
-          .textContent("operation aborded")
-          .position($scope.getToastPosition())
-          .hideDelay(1000)
+            .textContent("operation aborded")
+            .position($scope.getToastPosition())
+            .hideDelay(1000)
         )
       });
     }

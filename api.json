@@ -25,14 +25,6 @@
 	},
 	{
 		"method": "delete",
-		"url": "/pins/:id",
-		"query": {
-			"entity": "pins",
-			"id": "delete"
-		}
-	},
-	{
-		"method": "delete",
 		"url": "/category/:id",
 		"query": {
 			"entity": "category",
@@ -69,6 +61,22 @@
 		"query": {
 			"entity": "pins",
 			"id": "update"
+		}
+	},
+	{
+		"method": "delete",
+		"url": "/pins/:idCategory",
+		"query": {
+			"entity": "pins",
+			"id": "deletePinByCategorie"
+		}
+	},
+	{
+		"method": "delete",
+		"url": "/pin/:id",
+		"query": {
+			"entity": "pins",
+			"id": "delete"
 		}
 	}
 ]

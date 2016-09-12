@@ -748,5 +748,97 @@
 			"type": "delete_entity",
 			"table": "restaurants"
 		}
+	},
+	{
+		"undo": {
+			"type": "delete_query",
+			"table": "pins",
+			"id": "deletePinByCategorie"
+		},
+		"redo": {
+			"type": "add_query",
+			"table": "pins",
+			"id": "deletePinByCategorie",
+			"value": {
+				"id": "deletePinByCategorie",
+				"type": "sql",
+				"params": [
+					{
+						"type": "number",
+						"name": "idCategorie",
+						"required": true,
+						"$$hashKey": "object:2679"
+					}
+				],
+				"opts": {
+					"values": {
+						"idCategorie": "="
+					},
+					"query": "DELETE *\nFROM pins WHERE pins.id_categorie = :idCategorie"
+				}
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_query",
+			"table": "pins",
+			"id": "deletePinByCategorie"
+		},
+		"redo": {
+			"type": "add_query",
+			"table": "pins",
+			"id": "deletePinByCategorie",
+			"value": {
+				"id": "deletePinByCategorie",
+				"type": "sql",
+				"params": [
+					{
+						"type": "number",
+						"name": "idCategory",
+						"required": true,
+						"$$hashKey": "object:2679"
+					}
+				],
+				"opts": {
+					"values": {
+						"idCategory": "="
+					},
+					"query": "DELETE *\nFROM pins WHERE pins.id_category = :idCategory"
+				}
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_query",
+			"table": "pins",
+			"id": "deletePinByCategorie"
+		},
+		"redo": {
+			"type": "add_query",
+			"table": "pins",
+			"id": "deletePinByCategorie",
+			"value": {
+				"id": "deletePinByCategorie",
+				"type": "sql",
+				"params": [
+					{
+						"type": "number",
+						"name": "idCategory",
+						"required": true,
+						"$$hashKey": "object:2679",
+						"checked": true,
+						"value": 4
+					}
+				],
+				"opts": {
+					"values": {
+						"idCategory": "="
+					},
+					"query": "DELETE\nFROM pins WHERE pins.id_category = :idCategory"
+				}
+			}
+		}
 	}
 ]
