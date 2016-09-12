@@ -1,10 +1,6 @@
 {
 	"dev":{
 		"host": "localhost",
-		"port": 80
-	},
-	"prod":{
-		"host": "139.59.182.41",
-		"port": 80
+		"port": 8080
 	}
 }
