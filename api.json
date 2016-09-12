@@ -16,30 +16,6 @@
 		}
 	},
 	{
-		"method": "put",
-		"url": "/PUT/category/:id",
-		"query": {
-			"entity": "category",
-			"id": "update"
-		}
-	},
-	{
-		"method": "post",
-		"url": "/POST/categorie",
-		"query": {
-			"entity": "category",
-			"id": "create"
-		}
-	},
-	{
-		"method": "put",
-		"url": "/PUT/pin/:id",
-		"query": {
-			"entity": "pins",
-			"id": "update"
-		}
-	},
-	{
 		"method": "get",
 		"url": "/basemaps",
 		"query": {
@@ -65,18 +41,34 @@
 	},
 	{
 		"method": "post",
-		"url": "/POST/pin/",
+		"url": "/category",
+		"query": {
+			"entity": "category",
+			"id": "create"
+		}
+	},
+	{
+		"method": "post",
+		"url": "/pin/",
 		"query": {
 			"entity": "pins",
 			"id": "create"
 		}
 	},
 	{
-		"method": "get",
-		"url": "/catrs",
+		"method": "put",
+		"url": "/category/:id",
 		"query": {
-			"entity": "restaurants",
-			"id": "list"
+			"entity": "category",
+			"id": "update"
+		}
+	},
+	{
+		"method": "put",
+		"url": "/pin/:id",
+		"query": {
+			"entity": "pins",
+			"id": "update"
 		}
 	}
 ]

@@ -722,5 +722,31 @@
 				}
 			}
 		}
+	},
+	{
+		"undo": {
+			"type": "create_entity",
+			"table": "restaurants",
+			"value": {
+				"id": "8ccf95f3-5d93-431f-9b65-5dd867984243",
+				"fields": [
+					{
+						"name": "id",
+						"type": "number",
+						"primary": true,
+						"unique": true,
+						"required": true,
+						"read": true,
+						"write": true,
+						"default": false,
+						"autoIncrement": true
+					}
+				]
+			}
+		},
+		"redo": {
+			"type": "delete_entity",
+			"table": "restaurants"
+		}
 	}
 ]

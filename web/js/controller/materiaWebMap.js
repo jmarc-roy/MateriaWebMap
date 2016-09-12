@@ -1,4 +1,4 @@
-app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
+app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $timeout,
   $mdMedia, $mdToast, esriLoader, pins, categories, esriMapPoint, $state, $stateParams, $filter, basemaps, esriMapWidget) {
   var self = this
   $scope.basemaps = basemaps.data.rows
@@ -135,7 +135,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
             layer: layer
           },
           controller: EditTmplController,
-          templateUrl: './views/template/edit.tmpl.html',
+          templateUrl: './views/template/editCategory.tmpl.html',
           parent: angular.element(document.body),
           targetEvent: ev,
           clickOutsideToClose: true,
@@ -178,7 +178,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
         newLayer.name = layer.name
         newLayer.id = layer.id
         newLayer.style = JSON.stringify(layer.style)
-        $http.put('./api/PUT/category/' + newLayer.id, newLayer).success(function(updatedLayer) {
+        $http.put('./api/category/' + newLayer.id, newLayer).success(function(updatedLayer) {
           $mdDialog.hide()
           $state.transitionTo($state.current, $stateParams, {
             reload: true,
@@ -246,7 +246,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       }
       $scope.saveEdits2 = function(pin, layer) {
         pin.id_category = layer.id
-        $http.post('./api/POST/pin/', pin).success(function(updatedLayer) {
+        $http.post('./api/pin/', pin).success(function(updatedLayer) {
           $mdDialog.hide()
           $state.transitionTo($state.current, $stateParams, {
             reload: true,
@@ -291,7 +291,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       $scope.layer = {}
       $scope.saveEdits3 = function(category) {
         $scope.layer.style = JSON.stringify(category.style)
-        $http.post('./api/POST/categorie/', category).success(function(updatedLayer) {
+        $http.post('./api/category/', category).success(function(updatedLayer) {
 
           $mdDialog.cancel()
           $state.transitionTo($state.current, $stateParams, {
@@ -344,7 +344,7 @@ app.controller('HomeController', function($scope, $http, $mdDialog, $timeout,
       $scope.layer = {}
       $scope.saveEdits4 = function(category) {
 
-        $http.put('./api/PUT/pin/' + category.id, category).success(function(updatedLayer) {
+        $http.put('./api/pin/' + category.id, category).success(function(updatedLayer) {
 
           $mdDialog.cancel()
           $state.transitionTo($state.current, $stateParams, {

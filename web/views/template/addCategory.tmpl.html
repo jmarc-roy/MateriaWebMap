@@ -17,10 +17,10 @@
           <md-input-container>
             <label for="">Renderer type</label>
             <md-select ng-model="layer.style.rendererType" required>
-              <md-option>
+              <md-option value="Simple symbol">
                 Simple symbol
               </md-option>
-              <md-option>
+              <md-option value="3D symbol">
                 3D symbol
               </md-option>
             </md-select>
@@ -30,22 +30,22 @@
           <md-input-container>
             <label for="">3D shape</label>
             <md-select ng-model="layer.style.shape3D" required>
-              <md-option>
+              <md-option value="sphere">
                 sphere
               </md-option>
-              <md-option>
+              <md-option value="cylinder">
                 cylinder
               </md-option>
-              <md-option>
+              <md-option value="diamond">
                 diamond
               </md-option>
-              <md-option>
+              <md-option value="cube">
                 cube
               </md-option>
-              <md-option>
+              <md-option value="cone">
                 cone
               </md-option>
-              <md-option>
+              <md-option value="tetrahedron">
                 tetrahedron
               </md-option>
             </md-select>
@@ -66,13 +66,13 @@
           <md-input-container>
             <label for="">Shape</label>
             <md-select ng-model="layer.style.shape" required>
-              <md-option>
+              <md-option value="circle">
                 circle
               </md-option>
-              <md-option>
+              <md-option value="square">
                 square
               </md-option>
-              <md-option>
+              <md-option value="diamond">
                 diamond
               </md-option>
             </md-select>

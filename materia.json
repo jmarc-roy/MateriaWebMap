@@ -1,5 +1,6 @@
 {
 	"name": "MateriaWebMap",
-	"description": "Demo app with web maps",
-	"author": "Jim"
+	"icon": {
+		"color": "light-green-500"
+	}
 }

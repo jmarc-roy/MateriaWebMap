@@ -21,11 +21,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $mdTh
       'hue-2': '600', // use shade 600 for the <code>md-hue-2</code> class
       'hue-3': 'A100' // use shade A100 for the <code>md-hue-3</code> class
     })
-  $urlRouterProvider.otherwise("/home")
+  $urlRouterProvider.otherwise("/materia-web-map")
   $stateProvider.state('home', {
-      url: '/home',
-      templateUrl: "./views/home.html",
-      controller: "HomeController",
+      url: '/materia-web-map',
+      templateUrl: "./views/materiaWebMap.html",
+      controller: "MateriaWebMapController",
       resolve: {
         pins: function($http, $stateParams) {
           return $http.get('./api/pins')
