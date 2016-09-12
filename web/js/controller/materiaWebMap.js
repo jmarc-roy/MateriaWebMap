@@ -39,7 +39,7 @@ app.controller('MateriaWebMapController', function($scope, $http, $mdDialog, $ti
     });
     $scope.map = map
     for (i in $scope.basemaps) {
-      if ($scope.basemaps[i].name == 'dark-gray') {
+      if ($scope.basemaps[i].name == 'hybrid') {
         $scope.map.basemap = $scope.basemaps[i].name
         $scope.map.basemapTemplateUrl = $scope.basemaps[i].templateUrl
       }
