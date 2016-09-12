@@ -27,4 +27,6 @@ $> materia start
 
 It's configured by default to run with SQLite to ease the installation process but you can configure it on PostgreSQL too.
 
-You can also run it using [Materia Designer](https://getmateria.com)
+You can also run it using [Materia Designer](https://getmateria.com) :
+
+![gif](https://github.com/GeoAstronaute/MateriaWebMap/raw/master/materiawebmap.gif)
