@@ -903,5 +903,174 @@
 				}
 			}
 		}
+	},
+	{
+		"undo": {
+			"type": "delete_query",
+			"table": "pins",
+			"id": "pinWithStyle"
+		},
+		"redo": {
+			"type": "add_query",
+			"table": "pins",
+			"id": "pinWithStyle",
+			"value": {
+				"id": "pinWithStyle",
+				"type": "sql",
+				"params": [],
+				"opts": {
+					"values": {},
+					"query": "SELECT pins.name, category.name AS cat_name, pins.latitude, pins.longitude, category.style\nFROM pins\nLEFT JOIN category ON pins.id_category = category.id"
+				}
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_query",
+			"table": "pins",
+			"id": "pinWithStyle"
+		},
+		"redo": {
+			"type": "add_query",
+			"table": "pins",
+			"id": "pinWithStyle",
+			"value": {
+				"id": "pinWithStyle",
+				"type": "sql",
+				"params": [],
+				"opts": {
+					"values": {},
+					"query": "SELECT pins.id, pins.name, category.name AS cat_name, pins.latitude, pins.longitude, category.style\nFROM pins\nLEFT JOIN category ON pins.id_category = category.id"
+				}
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "change_field",
+			"table": "category",
+			"name": "cat_name",
+			"value": {
+				"name": "name",
+				"type": "text",
+				"primary": false,
+				"unique": true,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			}
+		},
+		"redo": {
+			"type": "change_field",
+			"table": "category",
+			"name": "name",
+			"value": {
+				"name": "cat_name",
+				"type": "text",
+				"primary": false,
+				"unique": true,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_query",
+			"table": "pins",
+			"id": "pinWithStyle"
+		},
+		"redo": {
+			"type": "add_query",
+			"table": "pins",
+			"id": "pinWithStyle",
+			"value": {
+				"id": "pinWithStyle",
+				"type": "sql",
+				"params": [],
+				"opts": {
+					"values": {},
+					"query": "SELECT *\nFROM pins\nLEFT JOIN category ON pins.id_category = category.id"
+				}
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "change_field",
+			"table": "category",
+			"name": "name",
+			"value": {
+				"name": "cat_name",
+				"type": "text",
+				"primary": false,
+				"unique": true,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			}
+		},
+		"redo": {
+			"type": "change_field",
+			"table": "category",
+			"name": "cat_name",
+			"value": {
+				"name": "name",
+				"type": "text",
+				"primary": false,
+				"unique": true,
+				"required": true,
+				"read": true,
+				"write": true,
+				"default": false
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_query",
+			"table": "pins",
+			"id": "pinWithStyle"
+		},
+		"redo": {
+			"type": "add_query",
+			"table": "pins",
+			"id": "pinWithStyle",
+			"value": {
+				"id": "pinWithStyle",
+				"type": "sql",
+				"params": [],
+				"opts": {
+					"values": {},
+					"query": "SELECT pins.id, pins.latitude, pins.longitude, pins.createdAt, pins.updatedAt, pins.id_category, category.style\nFROM pins\nLEFT JOIN category ON pins.id_category = category.id"
+				}
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_query",
+			"table": "pins",
+			"id": "pinWithStyle"
+		},
+		"redo": {
+			"type": "add_query",
+			"table": "pins",
+			"id": "pinWithStyle",
+			"value": {
+				"id": "pinWithStyle",
+				"type": "sql",
+				"params": [],
+				"opts": {
+					"values": {},
+					"query": "SELECT pins.id, pins.name, pins.latitude, pins.longitude, pins.id_category, category.style\nFROM pins\nLEFT JOIN category ON pins.id_category = category.id"
+				}
+			}
+		}
 	}
 ]

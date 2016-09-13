@@ -90,7 +90,7 @@
 			"params": [],
 			"opts": {
 				"values": {},
-				"query": "SELECT *\nFROM pins\nLEFT JOIN category ON pins.id_category = category.id"
+				"query": "SELECT pins.id, pins.name, pins.latitude, pins.longitude, pins.id_category, category.style\nFROM pins\nLEFT JOIN category ON pins.id_category = category.id"
 			}
 		}
 	]
