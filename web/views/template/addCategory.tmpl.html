@@ -1,22 +1,28 @@
-<md-dialog aria-label="addLayer" ng-cloak>
+<md-dialog aria-label="addLayer" style="min-width: 400px;">
   <form layout="column">
-    <md-toolbar class="md-hue-1">
+    <md-toolbar class="md-hue-1" layout="row">
       <div class="md-toolbar-tools">
         <h2>Add layer</h2>
       </div>
+      <md-button aria-label="close">
+        <md-tooltip>
+          close window
+        </md-tooltip>
+        <md-icon icon="close" ng-click="AddCategoryService.cancel()">close</md-icon>
+      </md-button>
     </md-toolbar>
     <md-dialog-content layout="column" flex>
       <div layout-padding layout-align="column" layout-wrapp>
-        <div>
-          <md-input-container>
+        <div layout="row">
+          <md-input-container flex>
             <label for="">Name</label>
-            <input ng-model="layer.name">
+            <input ng-model="AddCategoryService.layer.name">
           </md-input-container>
         </div>
-        <div>
-          <md-input-container>
+        <div layout="row">
+          <md-input-container flex>
             <label for="">Renderer type</label>
-            <md-select ng-model="layer.style.rendererType" required>
+            <md-select ng-model="AddCategoryService.layer.style.rendererType" required>
               <md-option value="Simple symbol">
                 Simple symbol
               </md-option>
@@ -26,10 +32,10 @@
             </md-select>
           </md-input-container>
         </div>
-        <div ng-show="layer.style.rendererType=='3D symbol'" layout="column">
+        <div ng-show="AddCategoryService.layer.style.rendererType=='3D symbol'" layout="column">
           <md-input-container>
             <label for="">3D shape</label>
-            <md-select ng-model="layer.style.shape3D" required>
+            <md-select ng-model="AddCategoryService.layer.style.shape3D" required>
               <md-option value="sphere">
                 sphere
               </md-option>
@@ -53,19 +59,19 @@
           <div layout="row">
             <md-input-container>
               <label for="">Height</label>
-              <input ng-model="layer.style.height">
+              <input ng-model="AddCategoryService.layer.style.height">
             </md-input-container>
             <md-input-container>
               <label for="">Width</label>
-              <input ng-model="layer.style.width">
+              <input ng-model="AddCategoryService.layer.style.width">
             </md-input-container>
           </div>
 
         </div>
-        <div ng-hide="layer.style.rendererType=='3D symbol'" ng-show="(layer.style.rendererType.lenght>=1)" layout="column">
+        <div ng-hide="AddCategoryService.layer.style.rendererType=='3D symbol'" ng-show="(AddCategoryService.layer.style.rendererType.lenght>=1)" layout="column">
           <md-input-container>
             <label for="">Shape</label>
-            <md-select ng-model="layer.style.shape" required>
+            <md-select ng-model="AddCategoryService.layer.style.shape" required>
               <md-option value="circle">
                 circle
               </md-option>
@@ -79,17 +85,18 @@
           </md-input-container>
           <md-input-container>
             <label for="">Size</label>
-            <input ng-model="layer.style.size">
+            <input ng-model="AddCategoryService.layer.style.size">
           </md-input-container>
         </div>
-
-        <md-input-container>
-          <label for="">Color</label>
-          <color-picker ng-model="layer.style.color" options="options"></color-picker>
-        </md-input-container>
-
+        <div layout="row">
+          <md-input-container flex>
+            <label for="">Color</label>
+            <color-picker ng-model="AddCategoryService.layer.style.color" options="options"></color-picker>
+          </md-input-container>
+        </div>
         <div>
-          <md-button ng-click="saveEdits3(layer)">
+          <md-button ng-click="AddCategoryService.saveEdits(AddCategoryService.layer)" aria-label="save">
+            <md-tooltip>Save</md-tooltip>
             <md-icon icon="save">save</md-icon>
           </md-button>
         </div>

@@ -1,26 +1,33 @@
-<md-dialog aria-label="Importer Fichier" ng-cloak>
+<md-dialog aria-label="Importer Fichier">
   <form layout="column">
-    <md-toolbar class="md-hue-1">
+    <md-toolbar class="md-hue-1" layout="row">
       <div class="md-toolbar-tools">
-        <h2>Edit {{pin.name}}</h2>
+        <h2>Edit {{EditPinService.pin.name}}</h2>
       </div>
+      <md-button aria-label="close">
+        <md-tooltip>
+          close window
+        </md-tooltip>
+        <md-icon icon="close" ng-click="EditPinService.cancel()">close</md-icon>
+      </md-button>
     </md-toolbar>
     <md-dialog-content layout="column" flex>
       <div layout-padding layout-align="row" layout-wrapp>
         <md-input-container>
           <label for="">Name</label>
-          <input ng-model="pin.name">
+          <input ng-model="EditPinService.pin.name">
         </md-input-container>
         <md-input-container>
           <label for="">Longitude</label>
-          <input ng-model="pin.longitude">
+          <input ng-model="EditPinService.pin.longitude">
         </md-input-container>
         <md-input-container>
           <label for="">Latitude</label>
-          <input ng-model="pin.latitude">
+          <input ng-model="EditPinService.pin.latitude">
         </md-input-container>
         <div>
-          <md-button ng-click="saveEdits4(pin, layer)">
+          <md-button ng-click="EditPinService.saveEdits(EditPinService.pin)">
+            <md-tooltip>Save</md-tooltip>
             <md-icon icon="save">save</md-icon>
           </md-button>
         </div>

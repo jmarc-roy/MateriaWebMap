@@ -13,26 +13,29 @@ app.factory('esriMapPoint', function(esriLoader, $http, $q) {
         var type = typeof PointCollection[0][i]
         switch (type) {
           case 'number':
-            var obj = {}
-            obj.name = i,
-              obj.alias = i,
-              obj.type = "esriFieldTypeDouble"
+            var obj = {
+              name: i,
+              alias: i,
+              type: "esriFieldTypeDouble"
+            }
             extractedField.push(obj)
             break;
           case 'string':
-            var obj = {}
-            obj.name = i,
-              obj.alias = i,
-              obj.type = "esriFieldTypeString"
+            var obj = {
+              name : i,
+              alias : i,
+              type : "esriFieldTypeString"
+            }
             extractedField.push(obj)
             break;
           case 'object':
             break;
           default:
-            var obj = {}
-            obj.name = i,
-              obj.alias = i,
-              obj.type = "esriFieldTypeString"
+            var obj = {
+              name : i,
+              alias : i,
+              type : "esriFieldTypeString"
+            }
             extractedField.push(obj)
             break;
         }
@@ -56,7 +59,6 @@ app.factory('esriMapPoint', function(esriLoader, $http, $q) {
         "esri/symbols/LabelSymbol3D",
         "esri/symbols/TextSymbol3DLayer",
         "esri/layers/support/LabelClass",
-        "esri/PopupTemplate",
         "esri/renderers/UniqueValueRenderer"
       ], function(
         Map,
@@ -76,7 +78,6 @@ app.factory('esriMapPoint', function(esriLoader, $http, $q) {
         LabelSymbol3D,
         TextSymbol3DLayer,
         LabelClass,
-        PopupTemplate,
         UniqueValueRenderer) {
 
         var GraphicCollection = []

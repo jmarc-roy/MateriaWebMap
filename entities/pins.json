@@ -83,6 +83,15 @@
 				},
 				"query": "DELETE\nFROM pins WHERE pins.id_category = :idCategory"
 			}
+		},
+		{
+			"id": "pinWithStyle",
+			"type": "sql",
+			"params": [],
+			"opts": {
+				"values": {},
+				"query": "SELECT *\nFROM pins\nLEFT JOIN category ON pins.id_category = category.id"
+			}
 		}
 	]
 }

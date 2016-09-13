@@ -840,5 +840,68 @@
 				}
 			}
 		}
+	},
+	{
+		"undo": {
+			"type": "delete_query",
+			"table": "pins",
+			"id": "pinWithStyle"
+		},
+		"redo": {
+			"type": "add_query",
+			"table": "pins",
+			"id": "pinWithStyle",
+			"value": {
+				"id": "pinWithStyle",
+				"type": "sql",
+				"params": [],
+				"opts": {
+					"values": {},
+					"query": "SELECT *\nFROM pins\nNATURAL JOIN categories"
+				}
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_query",
+			"table": "pins",
+			"id": "pinWithStyle"
+		},
+		"redo": {
+			"type": "add_query",
+			"table": "pins",
+			"id": "pinWithStyle",
+			"value": {
+				"id": "pinWithStyle",
+				"type": "sql",
+				"params": [],
+				"opts": {
+					"values": {},
+					"query": "SELECT *\nFROM pins\nNATURAL JOIN category"
+				}
+			}
+		}
+	},
+	{
+		"undo": {
+			"type": "delete_query",
+			"table": "pins",
+			"id": "pinWithStyle"
+		},
+		"redo": {
+			"type": "add_query",
+			"table": "pins",
+			"id": "pinWithStyle",
+			"value": {
+				"id": "pinWithStyle",
+				"type": "sql",
+				"params": [],
+				"opts": {
+					"values": {},
+					"query": "SELECT *\nFROM pins\nLEFT JOIN category ON pins.id_category = category.id"
+				}
+			}
+		}
 	}
 ]

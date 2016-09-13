@@ -1,14 +1,6 @@
 [
 	{
 		"method": "get",
-		"url": "/pins",
-		"query": {
-			"entity": "pins",
-			"id": "list"
-		}
-	},
-	{
-		"method": "get",
 		"url": "/categories",
 		"query": {
 			"entity": "category",
@@ -77,6 +69,14 @@
 		"query": {
 			"entity": "pins",
 			"id": "delete"
+		}
+	},
+	{
+		"method": "get",
+		"url": "/pins",
+		"query": {
+			"entity": "pins",
+			"id": "pinWithStyle"
 		}
 	}
 ]
