@@ -1,0 +1,78 @@
+{
+	"id": "575261b7-8fbc-48f0-a0b3-1654c7d253f4",
+	"fields": [
+		{
+			"name": "id",
+			"type": "number",
+			"primary": true,
+			"unique": true,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": false,
+			"autoIncrement": true
+		},
+		{
+			"name": "zoom",
+			"type": "number",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": false
+		},
+		{
+			"name": "latitude",
+			"type": "number",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": false
+		},
+		{
+			"name": "longitude",
+			"type": "number",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": false
+		},
+		{
+			"name": "basemap",
+			"type": "text",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": false
+		},
+		{
+			"name": "tilt",
+			"type": "number",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": true,
+			"defaultValue": 45
+		},
+		{
+			"name": "heading",
+			"type": "number",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": true,
+			"defaultValue": 0
+		}
+	]
+}

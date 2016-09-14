@@ -1,0 +1,63 @@
+<md-dialog aria-label="Map Settings" id="mapSettings" layout="column">
+    <form layout="column" flex>
+        <md-toolbar class="md-hue-1" layout="row">
+            <div class="md-toolbar-tools">
+                <h2>Default map settings</h2>
+            </div>
+            <md-button aria-label="close">
+                <md-tooltip>
+                    close window
+                </md-tooltip>
+                <md-icon icon="close" ng-click="MapSettingsService.cancel()">close</md-icon>
+            </md-button>
+        </md-toolbar>
+        <md-dialog-content layout="column" flex>
+            <div layout-padding layout="column" layout-padding>
+                <div layout="row">
+                 
+                    <md-input-container>
+                        <md-select ng-model="MapSettingsService.config.basemap">
+                            <md-option ng-value="basemap.name" ng-repeat="basemap in MapSettingsService.basemaps">{{basemap.name}}</md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="">Zoom</label>
+                        <input ng-model="MapSettingsService.config.zoom | number: 0">
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container>
+                        <label for="">Longitude</label>
+                        <input ng-model="MapSettingsService.config.longitude | number: 2">
+                    </md-input-container>
+                    <md-input-container>
+                        <label for="">Latitude</label>
+                        <input ng-model="MapSettingsService.config.latitude | number: 2">
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container>
+                        <label for="">Heading</label>
+                        <input ng-model="MapSettingsService.config.heading | number: 2">
+                    </md-input-container>
+
+                    <md-input-container>
+                        <label for="">Tilt</label>
+                        <input ng-model="MapSettingsService.config.tilt | number: 2">
+                    </md-input-container>
+                </div>
+                <div>
+                    <md-button id="mapSettingsButton" ng-click="EsriViewService.setDefaultMapSettings()" class="md-primary">
+                        Use current map location for default settings
+                    </md-button>
+                </div>
+                <div>
+                    <md-button ng-click="MapSettingsService.saveEdits(EditPinService.pin)">
+                        <md-tooltip>Save</md-tooltip>
+                        <md-icon icon="save">save</md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

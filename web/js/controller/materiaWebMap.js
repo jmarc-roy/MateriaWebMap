@@ -7,18 +7,23 @@ app.controller('MateriaWebMapController',
     pins,
     categories,
     basemaps,
+    mapConfiguration,
     AddCategoryService,
     EditCategoryService,
     AddPinService,
     EditPinService,
     DeletePinService,
     DeleteCategoryService,
-    EsriViewService
+    EsriViewService,
+    MapSettingsService
   ) {
     $scope.basemaps = basemaps.data.rows
     $scope.pins = pins.data
     $scope.pinsCount = pins.data.count
     $scope.categories = categories.data.rows
+    $scope.mapConfiguration = mapConfiguration.data
+    $scope.MapSettingsService = MapSettingsService.initialize($scope.mapConfiguration, $scope.basemaps)
+    
 
     $scope.AddCategoryService = AddCategoryService
     $scope.EditCategoryService = EditCategoryService.initialize()
@@ -27,7 +32,7 @@ app.controller('MateriaWebMapController',
     $scope.DeletePinService = DeletePinService
     $scope.DeleteCategoryService = DeleteCategoryService
     $scope.EsriViewService = EsriViewService
-    $scope.EsriViewService.initialize($scope.basemaps, $scope.pins, $scope.categories)
+    $scope.EsriViewService.initialize($scope.basemaps, $scope.pins, $scope.categories, $scope.mapConfiguration)
 
     $scope.EsriViewService.setView()
     

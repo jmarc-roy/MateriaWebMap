@@ -35,6 +35,9 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider, $mdTh
         },
         basemaps: function($http){
           return $http.get('./api/basemaps')
+        },
+        mapConfiguration: function($http){
+          return $http.get('./api/map/configurations/1')
         }
       }
     })

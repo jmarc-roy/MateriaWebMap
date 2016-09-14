@@ -1,17 +1,18 @@
-app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter, esriMapPoint, $rootScope) {
+app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter, esriMapPoint, $rootScope, MapSettingsService) {
     class EsriView {
         constructor() {
         }
-        initialize(basemaps, pins, categories) {
+        initialize(basemaps, pins, categories, config) {
             this.categories = categories
             this.basemaps = basemaps
             this.pins = pins
+            this.config = config
         }
         setMap() {
             var deffered = $q.defer()
             esriLoader.require(["esri/Map"], (Map) => {
                 this.map = new Map({
-                    basemap: "hybrid",
+                    basemap: this.config.basemap,
                     ground: "world-elevation",
                     basemapTemplateUrl: ""
                 });
@@ -33,10 +34,10 @@ app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter,
                     this.view.then((view) => {
                         this.view = view
                         this.view.goTo({
-                            center: [1, 47],
-                            zoom: 7,
-                            heading: 30,
-                            tilt: 60
+                            center: [this.config.longitude, this.config.latitude],
+                            zoom: this.config.zoom,
+                            heading: this.config.heading,
+                            tilt: this.config.tilt
                         })
                         this.center = this.view.center
                         this.setBasemap(this.basemaps)
@@ -51,13 +52,26 @@ app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter,
             })
             return this.view
         }
+        setDefaultMapSettings(){
+            console.log("In esriView mapSettings :", this.map.basemap)
+            MapSettingsService.config = {
+                zoom: this.view.zoom,
+                latitude: this.view.center.latitude,
+                longitude: this.view.center.longitude,
+                heading: this.view.camera.heading,
+                tilt: this.view.camera.tilt,
+                basemap: this.map.basemap.id,
+                id: 1
+            }
+            console.log(MapSettingsService.config)
+        }
         changeBasemap(newBasemap) {
             this.map.basemap = newBasemap.name
             this.map.basemapTemplateUrl = newBasemap.templateUrl
         }
         addWidget() {
             esriMapWidget.search(this.view)
-            esriMapWidget.Legend(this.view)
+          
         }
         changeLayerVisibility(layer) {
             layer.visible = !layer.visible;
@@ -66,7 +80,6 @@ app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter,
                     this.map.allLayers.items[i].visible = !this.map.allLayers.items[i].visible
                 }
             }
-
         }
         zoomIn(lng, lat) {
             esriLoader.require([
@@ -95,7 +108,7 @@ app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter,
                 var category = categories[i]
                 if (category) {
                     var categoryDataset = $filter('pinsByCategories')(pins, category.id)
-                    if (categoryDataset.length >= 0) {
+                    if (categoryDataset.length >= 1) {
                         dataSets.push(categoryDataset)
                         esriMapPoint.addPointCollection(this.map, categoryDataset, category.name).then((layer) => {
                         })
@@ -105,7 +118,7 @@ app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter,
         }
         setBasemap(basemaps) {
            basemaps.forEach((basemap) => {
-                if (basemap.name == 'hybrid') {
+                if (basemap.name == this.config.basemap) {
                     this.map.basemap = basemap.name
                     this.map.basemapTemplateUrl = basemap.templateUrl
                 }

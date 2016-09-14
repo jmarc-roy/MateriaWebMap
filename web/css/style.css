@@ -51,6 +51,25 @@ md-tooltip.ng-scope {
   line-height: 30px;
   overflow: auto;
 }
+#mapConfiguration {
+  position: absolute;
+  z-index: 72;
+  left: 5px;
+  top: 130px;
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 30px;
+  overflow: auto;
+  color: "white";
+}
+#mapSettingsButton{
+  font-size: 10px;
+  background: #505050;
+  color: white;
+}
+#mapConfiguration md-icon {
+  color: white;
+}
 #selectMenu .md-button {
    height: 60px;
   padding: 0;

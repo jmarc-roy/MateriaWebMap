@@ -78,5 +78,21 @@
 			"entity": "pins",
 			"id": "pinWithStyle"
 		}
+	},
+	{
+		"method": "get",
+		"url": "/map/configurations/:id",
+		"query": {
+			"entity": "map_configuration",
+			"id": "get"
+		}
+	},
+	{
+		"method": "put",
+		"url": "/map/settings/:id",
+		"query": {
+			"entity": "map_configuration",
+			"id": "update"
+		}
 	}
 ]

@@ -3,6 +3,12 @@
     <div id="mapCenter" layout-padding style="background-color: #212121; color: white;">
     longitude: <strong>{{EsriViewService.center.longitude | number:2}}</strong>, latitude: <strong>{{EsriViewService.center.latitude | number:2}}</strong>
     </div>
+    <div id="mapConfiguration">
+      <md-button class="md-icon-button" ng-click="MapSettingsService.show($event)">
+        <md-tooltip>Map settings</md-tooltip>
+        <md-icon>settings</md-icon>
+      </md-button>
+    </div>
     <div id="selectMenu" style="background-color: #212121; color: white; font-weight: bold;" layout="column">
       <md-menu layout="column">
         <md-button aria-label="Open basempap list" ng-click="openMenu($mdOpenMenu, $event)" >

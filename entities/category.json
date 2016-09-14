@@ -31,6 +31,17 @@
 			"read": true,
 			"write": true,
 			"default": false
+		},
+		{
+			"name": "visible",
+			"type": "boolean",
+			"primary": false,
+			"unique": false,
+			"required": true,
+			"read": true,
+			"write": true,
+			"default": true,
+			"defaultValue": true
 		}
 	],
 	"relations": [
