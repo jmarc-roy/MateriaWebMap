@@ -110,7 +110,7 @@ app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter,
                     var categoryDataset = $filter('pinsByCategories')(pins, category.id)
                     if (categoryDataset.length >= 1) {
                         dataSets.push(categoryDataset)
-                        esriMapPoint.addPointCollection(this.map, categoryDataset, category.name).then((layer) => {
+                        esriMapPoint.addPointCollection(this.map, categoryDataset, category.name, this.categories).then((layer) => {
                         })
                     }
                 }

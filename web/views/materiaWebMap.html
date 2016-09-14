@@ -36,11 +36,11 @@
         </md-button>
       </md-toolbar>
       <md-list id="layers" layout="column">
-        <div flex>
+        <md-content flex>
           <div ng-repeat="category in categories">
-            <md-list-item ng-class="{'active': category.expand}" ng-click="category.expand=!category.expand">
-              <p class="text-line-1" style="width: ">{{category.name}}</p>
-              <md-icon class="md-secondary" ng-click="EsriViewService.changeLayerVisibility(category)" aria-label="layer-visibility">{{category.visible ? 'layers' : 'layers_clear'}}</md-icon>
+            <md-list-item ng-class="{'active': category.expand}"  ng-click="category.expand=!category.expand">
+              <p class="text-line-1" style="opacity: 1;" >{{category.name}}</p>
+              <md-icon class="md-secondary" ng-click="EsriViewService.changeLayerVisibility(category)" aria-label="layer-visibility" ng-style="{'color': category.style.color}">{{category.visible ? 'layers' : 'layers_clear'}}</md-icon>
             </md-list-item>
             <div layout="column" ng-if="category.expand">
               <div class="small-toolbar" layout="row">
@@ -63,9 +63,9 @@
                 </md-button>
               </div>
               <div layout-padding class="empty" ng-if=" ! (pins | filter:{id_category: category.id}).length" layout="row" layout-align="center center">This layer is empty, please add some points location</div>
-              <div class="pins" ng-if="(pins | filter:{id_category: category.id}).length">
+              <div class="pins" ng-if="(pins | filter:{id_category: category.id}).length" >
                 <div layout="row" layout-padding ng-click="EsriViewService.zoomIn(pin.longitude, pin.latitude)" ng-repeat="pin in pins | filter:{id_category: category.id}">
-                  <md-icon>place</md-icon>
+                  <md-icon ng-style="{'color': pin.style.color}">place</md-icon>
                   <p class="text-line-1" flex>{{pin.name}}</p>
                   <md-button class="md-secondary md-icon-button" ng-click="EditPinService.show($event, pin)" aria-label="editPin">
                     <md-tooltip>Edit</md-tooltip>
@@ -81,7 +81,7 @@
             </div>
             <md-divider></md-divider>
           </div>
-        </div>
+        </md-content>
       </md-list>
     </md-card>
   </div>

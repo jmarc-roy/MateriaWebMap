@@ -1,11 +1,19 @@
 app.factory('esriMapPoint', function(esriLoader, $http, $q) {
   return {
-    addPointCollection: function(map, PointCollection, name) {
+    addPointCollection: function(map, PointCollection, name, layerSource) {
       var deffered = $q.defer()
       var extractedField = []
       var style = {}
       if (JSON.parse(PointCollection[0].style)) {
         style = JSON.parse(PointCollection[0].style)
+        for (i in layerSource){
+          if (layerSource[i].id == PointCollection[0].id_category)
+          layerSource[i].style = style
+        }
+     
+        for (i in PointCollection){
+          PointCollection[i].style = style
+        }
       } else {
         style = PointCollection[0].style
       }
