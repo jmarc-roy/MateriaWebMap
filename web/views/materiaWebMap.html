@@ -36,7 +36,7 @@
         </md-button>
       </md-toolbar>
       <md-list id="layers" layout="column">
-        <md-content flex>
+        <div flex>
           <div ng-repeat="category in categories">
             <md-list-item ng-class="{'active': category.expand}" ng-click="category.expand=!category.expand">
               <p class="text-line-1" style="width: ">{{category.name}}</p>
@@ -81,7 +81,7 @@
             </div>
             <md-divider></md-divider>
           </div>
-        </md-content>
+        </div>
       </md-list>
     </md-card>
   </div>
