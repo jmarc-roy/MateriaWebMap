@@ -1,10 +1,16 @@
 <md-dialog aria-label="Add pin to category" ng-cloak>
   <form layout="column">
     <md-toolbar class="md-hue-1">
-      <div class="md-toolbar-tools">
-        <p>
+      <div class="md-toolbar-tools" layout="row">
+        <div flex>
           <md-icon style="color: white; padding-right: 15px;">location_on</md-icon>Add a point location to {{layer.name}}
-        </p>
+        </div>
+        <md-button aria-label="close" class="md-icon-button" style="margin: auto;">
+        <md-tooltip>
+          close window
+        </md-tooltip>
+        <md-icon icon="close" ng-click="AddPinService.cancel()">close</md-icon>
+      </md-button>
 
       </div>
     </md-toolbar>

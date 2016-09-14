@@ -55,11 +55,11 @@ app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter,
         setDefaultMapSettings(){
             console.log("In esriView mapSettings :", this.map.basemap)
             MapSettingsService.config = {
-                zoom: this.view.zoom,
-                latitude: this.view.center.latitude,
-                longitude: this.view.center.longitude,
-                heading: this.view.camera.heading,
-                tilt: this.view.camera.tilt,
+                zoom: Math.round(this.view.zoom * 100) / 100,
+                latitude: Math.round(this.view.center.latitude * 100) / 100,
+                longitude: Math.round(this.view.center.longitude * 100) / 100,
+                heading: Math.round(this.view.camera.heading * 100) / 100,
+                tilt: Math.round(this.view.camera.tilt * 100) / 100,
                 basemap: this.map.basemap.id,
                 id: 1
             }

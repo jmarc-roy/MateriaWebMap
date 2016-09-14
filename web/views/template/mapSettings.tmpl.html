@@ -4,47 +4,56 @@
             <div class="md-toolbar-tools">
                 <h2>Default map settings</h2>
             </div>
-            <md-button aria-label="close">
+            <div >
+                <md-button aria-label="close" class="md-icon-button" style="margin: auto;">
                 <md-tooltip>
                     close window
                 </md-tooltip>
                 <md-icon icon="close" ng-click="MapSettingsService.cancel()">close</md-icon>
             </md-button>
+            </div>
+            
         </md-toolbar>
         <md-dialog-content layout="column" flex>
             <div layout-padding layout="column" layout-padding>
                 <div layout="row">
-                 
-                    <md-input-container>
+
+                    <md-input-container flex>
+                        <label>Basemap</label>
                         <md-select ng-model="MapSettingsService.config.basemap">
-                            <md-option ng-value="basemap.name" ng-repeat="basemap in MapSettingsService.basemaps">{{basemap.name}}</md-option>
+                            <md-option ng-value="basemap.name" ng-repeat="basemap in MapSettingsService.basemaps"><img ng-src="{{basemap.templateUrl}}" alt="" style="height: 40px; margin-right: 10px;">{{basemap.name}}</md-option>
                         </md-select>
                     </md-input-container>
-                    <md-input-container>
-                        <label for="">Zoom</label>
-                        <input ng-model="MapSettingsService.config.zoom | number: 0">
-                    </md-input-container>
+                    <div style="margin-top:26px; margin-left:5px;">
+                        <md-input-container flex style="margin-top: 10px;">
+                            <label for="">Zoom</label>
+                            <md-icon>zoom_out_map</md-icon>
+                            <input ng-model="MapSettingsService.config.zoom">
+                        </md-input-container>
+                    </div>
                 </div>
                 <div layout="row">
-                    <md-input-container>
+                    <md-input-container flex>
                         <label for="">Longitude</label>
-                        <input ng-model="MapSettingsService.config.longitude | number: 2">
+                        <md-icon>edit_location</md-icon>
+                        <input ng-model="MapSettingsService.config.longitude">
                     </md-input-container>
-                    <md-input-container>
+                    <md-input-container flex>
                         <label for="">Latitude</label>
-                        <input ng-model="MapSettingsService.config.latitude | number: 2">
+                        <input ng-model="MapSettingsService.config.latitude">
                     </md-input-container>
                 </div>
                 <div layout="row">
-                    <md-input-container>
+                    <md-input-container flex>
                         <label for="">Heading</label>
-                        <input ng-model="MapSettingsService.config.heading | number: 2">
+                        <input ng-model="MapSettingsService.config.heading">
                     </md-input-container>
 
-                    <md-input-container>
+                    <md-input-container flex>
                         <label for="">Tilt</label>
-                        <input ng-model="MapSettingsService.config.tilt | number: 2">
+                        <input ng-model="MapSettingsService.config.tilt">
                     </md-input-container>
+
                 </div>
                 <div>
                     <md-button id="mapSettingsButton" ng-click="EsriViewService.setDefaultMapSettings()" class="md-primary">
