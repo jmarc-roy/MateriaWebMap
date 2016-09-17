@@ -1,16 +1,19 @@
-app.factory('esriMapWidget', function(esriLoader, $http, $q) {
-  return {
-    homeButton: function(view) {
-      esriLoader.require(["esri/widgets/Home"], function(Home) {
+app.factory('EsriWidgetService', function (esriLoader, $http, $q) {
+  class EsriWidget {
+    constructor() {
+
+    }
+    setHomeButton(view) {
+      esriLoader.require(["esri/widgets/Home"], function (Home) {
         var homeWidget = new Home({
           view: view
         })
         view.ui.add(homeWidget, "top-left");
       })
-    },
-    Legend: function(view, layer) {
+    }
+    setLegend(view, layer) {
       var deffered = $q.defer()
-      esriLoader.require(["esri/widgets/Legend"], function(Legend) {
+      esriLoader.require(["esri/widgets/Legend"], function (Legend) {
         var featureLayer
         var test
         var legend = new Legend({
@@ -26,19 +29,19 @@ app.factory('esriMapWidget', function(esriLoader, $http, $q) {
         view.ui.add(legend, "left");
       })
       return deffered.promise
-    },
-    search: function(view) {
-      esriLoader.require(["esri/widgets/Search"], function(Search) {
+    }
+    setSearchBar(view, position) {
+      esriLoader.require(["esri/widgets/Search"], function (Search) {
         var searchWidget = new Search({
           view: view
         });
-        // Adds the search widget below other elements in
-        // the top left corner of the view
         view.ui.add(searchWidget, {
-          position: "top-right",
+          position: position,
           index: 2
         });
       })
     }
   }
+  let esriWidget = new EsriWidget()
+  return esriWidget
 });

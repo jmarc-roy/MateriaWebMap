@@ -1,4 +1,4 @@
-app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter, esriMapPoint, $rootScope, MapSettingsService) {
+app.factory("EsriViewService", function ($q, $rootScope, $filter, esriLoader, EsriWidgetService, EsriPointService, MapSettingsService) {
     class EsriView {
         constructor() {
         }
@@ -8,7 +8,7 @@ app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter,
             this.pins = pins
             this.config = config
         }
-        setMap() {
+        _setMap() {
             var deffered = $q.defer()
             esriLoader.require(["esri/Map"], (Map) => {
                 this.map = new Map({
@@ -21,7 +21,8 @@ app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter,
             return deffered.promise
         }
         setView() {
-            this.setMap().then(() => {
+            var deffered = $q.defer()
+            this._setMap().then(() => {
                 esriLoader.require(["esri/views/SceneView"], (SceneView) => {
                     this.view = new SceneView({
                         container: "viewDiv",
@@ -32,6 +33,7 @@ app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter,
                         tilt: 20
                     });
                     this.view.then((view) => {
+                        deffered.resolve()
                         this.view = view
                         this.view.goTo({
                             center: [this.config.longitude, this.config.latitude],
@@ -40,7 +42,7 @@ app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter,
                             tilt: this.config.tilt
                         })
                         this.center = this.view.center
-                        this.setBasemap(this.basemaps)
+                        this._setBasemap(this.basemaps)
                         this.addPointCollection(this.categories, this.pins)
                         this.addWidget()
                         this.view.watch('center', () => {
@@ -50,9 +52,9 @@ app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter,
                     })
                 })
             })
-            return this.view
+            return deffered.promise
         }
-        setDefaultMapSettings(){
+        setDefaultMapSettings() {
             console.log("In esriView mapSettings :", this.map.basemap)
             MapSettingsService.config = {
                 zoom: Math.round(this.view.zoom * 100) / 100,
@@ -70,8 +72,7 @@ app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter,
             this.map.basemapTemplateUrl = newBasemap.templateUrl
         }
         addWidget() {
-            esriMapWidget.search(this.view)
-          
+            EsriWidgetService.setSearchBar(this.view, "top-right")
         }
         changeLayerVisibility(layer) {
             layer.visible = !layer.visible;
@@ -103,35 +104,33 @@ app.factory("EsriViewService", function (esriLoader, $q, esriMapWidget, $filter,
             }
         }
         addPointCollection(categories, pins) {
-            var dataSets = []
-            for (let i in categories) {
-                var category = categories[i]
-                if (category) {
-                    var categoryDataset = $filter('pinsByCategories')(pins, category.id)
-                    if (categoryDataset.length >= 1) {
-                        dataSets.push(categoryDataset)
-                        esriMapPoint.addPointCollection(this.map, categoryDataset, category.name, this.categories).then((layer) => {
-                        })
-                    }
+            this._addPoint(0, categories, pins)
+        }
+
+        _addPoint(i, categories, pins) {
+            let category = categories[i]
+            if (category) {
+                var categoryDataset = $filter('pinsByCategories')(pins, category.id)
+                console.log(categoryDataset)
+                if (categoryDataset.length >= 1) {
+                    EsriPointService.createFeatureLayer(this.map, categoryDataset, category.name, this.categories).then(() => {
+                        if (++i < categories.length) {
+                            this._addPoint(i, categories, pins)
+                        }
+                    })
                 }
             }
         }
-        setBasemap(basemaps) {
-           basemaps.forEach((basemap) => {
+
+        _setBasemap(basemaps) {
+            basemaps.forEach((basemap) => {
                 if (basemap.name == this.config.basemap) {
                     this.map.basemap = basemap.name
                     this.map.basemapTemplateUrl = basemap.templateUrl
                 }
-           })
+            })
         }
     }
     let esriView = new EsriView()
     return esriView;
-
 })
-
-
-
-
-
-
